@@ -25,8 +25,65 @@
 ![sort_algorithm_time_complexity](./img/sort_algorithm_time_complexity.png)
 
 ### 예제
+```c++
+float sum(float a[], int n){
+  float s = 0.0;
+  for (int i = 1; i <= n; i++)
+      s += a[i];
+  return s;
+}
+```
+&rarr; 명령어 총 실행 횟수 = 2n + 3, 시간 복잡도 = 0(n)
+
+```c++
+float rsum(float a[], int n){
+  if (n <= 0)
+      return (0.0);
+  else
+      return (rsum(a, n-1) + a[n]);
+}
+```
+&rarr; 명령어 총 실행 횟수 = 2n + 2, 시간 복잡도 = 0(n)
+
+![time_complexity_example1](./img/time_complexity_example1.png)
+
+![time_complexity_example2](./img/time_complexity_example2.png)
 
 ---
 ## 공간복잡도
 
 ### 예제
+```c++
+float abc(float a, float b, float c){
+  return(a + b + b*c + (a + b - c)/(a + b) + 4.0);
+}
+```
+&rarr; 공간 복잡도 = 0
+- 변수 a,b,c는 전달되는 인자로서 함수 abc 내에서 해결하고자 하는 문제와 무관하므로 공간 복잡도는 0임
+
+```c++
+float sum(float a[], int n){
+  float s = 0.0;
+  for (int i = 1; i <= n; i++)
+      s += a[i];
+  return s;
+}
+```
+&rarr; 공간 복잡도 = n + 3
+- 변수 a[]의 경우 합을 구하기 위해 반복문 내에서 n개의 원소가 모두 참조됨
+- 변수 n은 for문을 벗어나기 위한 한계값으로 사용됨
+- a[]를 저장하기 위한 공간 + 변수 s, n, i를 위한 공간 = n + 3
+
+```c++
+float rsum(float a[], int n){
+  if (n <= 0)
+      return (0.0);
+  else
+      return (rsum(a, n-1) + a[n]);
+}
+```
+&rarr; 공간 복잡도 = 3(n + 1)
+- 변수 n은 if문 안의 한계값으로 사용됨 / a[]는 합을 구하기 위해 사용하며 n번째 원소만 필요로 함
+      - a[]의 n번째 원소를 위한 공간 + n을 위한 공간 = 1 + 1
+- 순환 기법이 사용되었으므로 depth of ecursion을 계산해야 하며, 순환을 위해 필요한 복귀 주소를 저장할 공간도 계산해야 함
+- depth of recursion * (a[n], n, 복귀 주소를 위한 공간) = (n+1) * 3
