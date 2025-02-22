@@ -24,7 +24,7 @@
 
 ---
 ## Linked List (연결 리스트)
-- 각 데이터 시뭔스가 순서를 가지고 연결된 순차적 구조
+- 각 데이터 시퀀스가 순서를 가지고 연결된 순차적 구조 / 각 노드가 데이터와 포인터를 가짐
 - 데이터 접근이 느림 (링크를 타고 찾아야 함)
 - 동적인 데이터 추가 / 삭제에 유리 but 포인터를 위한 추가 공간이 필요
 - 각 요소 : Node &rarr; Node에는 key와 다음 포인터인 next 포함
@@ -81,4 +81,63 @@
 &rarr; 함수 호출은 가장 마지막에 호출된 함수가 가장 먼저 실행 완료하고 복귀하는 후입선출 구조이므로 스택을 이용해 관리 !
 
 --- 
+## Queue
+- 한 방향에서는 삽입 / 반대 방향에서는 삭제연산이 이루어지는 선형 자료구조
+- **FIFO(First in first out) : 먼저 들어간 원소가 먼저 나옴**
+
+#### 주요 함수
+- 'push' : 데이터 추가
+- 'pop' : queue의 front 데이터 삭제
+- 'front' : 제일 최상위 데이터 반환
+- 'back' : 제일 마지막 데이터 반환
+- 'size' : queue의 현재 사이즈 반환
+- 'empty' : 비어있는지 확인
+- 'swap' : 두 queue의 내용 바꾸기
+
+> #### 시간복잡도 & 공간복잡도
+> - front 데이터 조회 : 0(1)
+> - 특정 데이터 조회 : 0(n)
+> - 데이터 삽입/삭제 : 0(1)
+
+### Queue 활용
+- 프로세스 레디 큐
+- 스케쥴링
+- 캐시 구현
+- 너비 우선 탐색 (BFS)
+
+## Priority Queue
+- 들어간 순서에 상관없이 우선순위가 높은 데이터가 먼저 나옴
+- 값을 비교해야 하므로 null을 허용하지 않음
+- 내부는 이진트리 힙으로 구성됨
+
+#### 주요 기능
+- 'enqueue' : queue에 새 요소 삽입
+- 'dequeue' : queue에서 최대 우선 순위 요소를 삭제하고 해당 값 반환
+- 'peek' : queue에서 최대 우선순위 요소 반환
+
+> 1. 모든 항목에는 우선순위가 존재
+> 2. 우선순위가 높은 요소는 우선 순위가 낮은 요소보다 먼저 queue에서 제외
+> 3. 두 요소의 우선 순위가 같으면 queue의 순서에 따라 제공
+
+#### Priority Queue 구현
+- 배열, 연결리스트, 힙으로 구현 가능
+- **Heap이 최악의 경우에도 0(log n)을 보장**하므로 보통 힙으로 구현함
+
+## Stack ↔ Queue 구현
+- stack은 LIFO, queue는 FIFO이므로 들어오고 나갈 떄 저장된 순서를 뒤집으면 서로간에 구현이 가능함
+
+#### Stack &rarr; Queue
+- 뺄 때 다른 스택으로 옮겨서 빼기 !
+- enqueue : a stack에 push / dequeue : b 스택에 남은게 있다면 b에 있는 것을 pop, 없다면 a 스택에 있는 것을 모두 pop해서 b로 push하고 b에 있는 것을 pop
+
+[stack_to_queue](./code/Stack/stack_to_queue.cpp)
+
+#### Queue &rarr; Stack
+- 넣어줄 때 순서를 바꿔서 넣기 !
+- push : main queue에 데이터가 있다면 모두 dequeue해서 sub queue로 넣음. 그 후 main queue에 삽입하려는 데이터를 삽입하고, sub queue로 옮겨 놓은 것을 모두 dequeue해서 main queue로 넣음
+- pop : main queue에 있는 것을 dequeue함
+
+[queue_to_stack](./code/Queue/queue_to_stack.cpp)
+
+---
 
