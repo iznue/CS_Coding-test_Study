@@ -9,7 +9,8 @@ void selectionSort(int a[], int n){
           if (a[j] < a[least])
               least = j;
       swap(a[i], a[least]);
-  }
+        }
+    }
 }
 ```
 > 1. 정렬 되지 않은 인덱스의 맨 앞부터, 이를 포함한 그 이후 배열값 중 가장 작은 값을 찾음
