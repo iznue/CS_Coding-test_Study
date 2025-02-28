@@ -205,6 +205,7 @@
 4. 메모하기 (Memoization or tabulation) &rarr; 변수의 값에 따른 결과 저장 (배열 이용)
 5. 기저 상태 확인 &rarr; 가장 작은 문제의 상태 파악
 6. 구현 &rarr; 1. bottom-up (tabulation) 방식 : 반복문 사용 / 2. top-down (memoization) 방식 : 재귀 사용
+
 &rarr; tabulation : 반복을 통해 하나씩 채우는 과정을 table-filing이라 하며, table에 저장된 값에 직접 접근해 재활용함
 
 #### 구현 방법
@@ -255,17 +256,89 @@ def fibonacci_td(n):
 
 #### 문제 유형
 > 단일 출발 (single-source) 최단 경로 : 어떤 하나의 정점에서 출발하여 나머지 모든 정점까지의 최단 경로를 찾음
+> 
 > 단일 도착 (single-destination) 최단 경로 : 모든 정점에서 출발하여 어떤 하나의 정점까지의 최단 경로를 찾음
+> 
 > (그래프 내의 간선들을 뒤집으면 단일 출발 최단 경로 문제로 바뀔 수 있음)
+> 
 > 단일 쌍 (single-pair) 최단 경로 : 어떤 정점 v에서 v'로 가는 최단 경로를 찾음
+> 
 > 전체 쌍 (all-pair) 최단 경로 : 모든 정점 쌍들 사이의 최단 경로를 찾음
 
 #### 대표적인 알고리즘
 > 다익스트라 알고리즘 : 음이 아닌 가중 그래프에서의 단일 출발, 단일 도착, 단일 쌍 최단 경로 문제
+> 
 > 벨만-포드 알고리즘 : 가중 그래프에서의 단일 출발, 단일 도착, 단일 쌍 최단 경로 문제
+> 
 > 플로이드-워셜 알고리즘 : 전체 쌍 최단 경로 문제
+> 
 > BFS : 가중치가 없거나 가중치가 동일한 그래프에서 최단 경로를 찾는 경우 가장 빠름
 
 [shortest_path_deatil](./ShortestPath.md)
 
+---
+## MST : Minimum spanning tree
+- 최소 신장 트리 = 최소 스패닝 트리
+- 주어진 가중치 그래프에서 **사이클 없이** **모든 점들을 연결**시킨 트리 중 선분들의 **가중치 합이 최소**인 트리
+(사이클이 없는 트리 = **신장 트리**)
+
+> **주어진 그래프에서 신장 트리를 찾으려면?**
+> - 사이클이 없도록 모든 점을 연결
+> - 그래프의 노드 수가 n이면, 신장 트리에는 정확히 (n-1)개의 간선
+> - 간선이 n개가 되면, 무조건 사이클이 만들어짐
+
+## 분리 집합 (Union Find)
+- union find = 합집합 찾기 = 서로소 집합(Disjoint Set) 알고리즘
+- **서로 다른 두 노드가 같은 집합에 속하는지 확인**하는 알고리즘
+- 여러 개의 노드들이 존재 &rarr; 두 개의 노드 선택 &rarr; 이 두 노드들이 서로 같은 그래프에 속하는지 판별
+- 선택한 간선이 사이클을 발생하는지 계속 확인해야함
+
+&rarr; 두 노드를 선택했을 때 최상위 부모가 같으면 사이클 발생, 최상위 부모가 다르면 사이클 발생 X
+
+#### 구현
+1. 초기화 : root 배열에 i 원소의 부모 노드 번호 저장, i 원소가 루트 노드면 자기 자신의 번호를 저장
+
+```c++
+void initialize() {
+    for (int i = 1; i <= N; i++) {
+        root[i] = i;
+    }
+}
+```
+2. n번 노드의 root 노드 번호 찾기 = find
+
+```c++
+int find(int n) {
+    if (root[n] == n) return n;
+    return root[n] = find(root[n]);
+}
+```
+3. a,b 노드를 같은 집합으로 묶기 = merge, union
+
+```c++
+void merge(int a, int b) {
+    root[find(b)] = find(a);
+}
+```
+[union-find](./code/MST/union_find.py)
+
+## Kruskal Algorithm &rarr; union find를 활용한 MST 찾기
+- 음수 가중치가 없는 무방향 그래프에서 최소 신장 트리(최소 스패닝 트리)를 찾는 알고리즘
+1. 간선들을 가중치 순으로 정렬 (오름차순)
+2. 가중치가 가장 작은 간선을 꺼냄
+3. 사이클을 만들지 않을 때에만 해당 간선 추가 (사이클 확인은 union find 알고리즘 이용)
+
+&rarr; 사이클이 발생하는 경우는 **같은 그래프에 속한 두 노드를 연결**했을 때임
+&rarr; 두 노드가 같은 그래프에 속하는지 아닌지는 **Union find** 개념으로 판별
+
+![kruskal](https://github.com/user-attachments/assets/e68945bd-c9a5-49a5-8c78-97ac572ad95c)
+
+#### 구현
+1. (Cost, A, B) 리스트를 만들고 모든 간선들의 정보를 priority queue에 저장 (min heap)
+2. priority queue에서 하나씩 pop하며 만약 **A, B가 연결되어 있지 않다면 A와 B를 연결**하고 전체 비용에 Cost를 더함
+3. 만일 A,B가 연결되어 있다면 무시 
+
+[kruskal](./code/MST/kruskal.py)
+
+---
 
