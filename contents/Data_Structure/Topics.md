@@ -8,6 +8,23 @@
 
 ![자료구조 실행시간](./img/datastructure_timecomplexity.png)
 
+<details>
+<summary>Table of Contents</summary>
+
+- [Array](#array-배열)
+- [Linked List](#linked-list-연결-리스트)
+- [Stack](#stack)
+- [Queue](#queue)
+- [Tree](#tree)
+- [Binary Tree](#binary-tree)
+- [Graph](#graph)
+- [Deque](#deque)
+- [Heap](#heap)
+- [Hash Table](#hash-table)
+- [Trie](#trie--prefix-tree-digital-search-tree-retrieval-tree)
+
+</details>
+
 ---
 ## Array (배열)
 - 동일한 타입의 데이터들을 저장하며, 고정된 크기를 가짐
