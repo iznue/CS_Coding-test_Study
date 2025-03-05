@@ -17,7 +17,7 @@
 ## Yocto
 - **하드웨어에 상관없이 작동하는 커스텀 리눅스 개발을 도와주는 오픈소스 프로젝트**
 - tool chain, kernel, root file system등과 런타임에 설치할 수 있는 바이너리 패키지와 패키지 관리자까지 설치 가능한 강력한 빌드 시스템
-- 여러 **레이어**로 구성돼 있으며 레이어들은 관습적으로 **'meta-'**라는 접두어를 가짐
+- 여러 **레이어**로 구성돼 있으며 레이어들은 관습적으로 **meta-**라는 접두어를 가짐
      - meta : OpenEmbedded의 OE-Core
      - meta-poky : Poky의 배포판에 해당하는 메타 데이터
      - meta-yocto-bsp : Yocto project가 지원하는 머신에 대한 bsp 포함
