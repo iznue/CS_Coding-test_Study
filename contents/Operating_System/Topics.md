@@ -8,9 +8,10 @@
 <summary>Table of Contents</summary>
 
 - [Memory](#memory)
-- [Process VS Thread](#process--thread)
+- [Process VS Thread](#process-vs-thread)
 - [PCB](#process-control-block-pcb)
-- [Context-Switching](#context-switching)
+- [Context Switching](#context-switching)
+- [Multi Process VS Multi Thread](#multi-process-vs-multi-thread)
 
 </details>
 
@@ -110,4 +111,37 @@
 </details>
 
 ---
+## Multi-Process VS Multi-Thread
 
+![multi-process_multi-thread](./img/multi-process_multi-thread.png)
+&rarr; **Multi Processing과 Multi Threading은 효율성과 성능을 높이기 위해 컴퓨팅 작업을 병렬화하는 두 가지 접근 방식**
+
+### Single Thread
+- 하나의 프로세스에서 하나의 스레드 실행
+- 하나의 레지스터와 스택으로 표현
+- 요청에 대한 빠른 반응을 요구하는 네트워크 서버의 프로그램일 경우 단일 스레드 모델이 더 적합함
+
+> 장점
+> - 자원 접근에 대한 동기화를 신경쓰지 않아도 됨
+> - context switching 작업을 요구하지 않음
+>
+> 단점
+> - 한번에 하나의 일만 처리할 수 있으므로 작업에서 블로킹이 발생하면 다음 일을 처리하기까지 기다려야 하는 문제가 발생함
+
+### Multi-Process
+- 각각 자체 메모리 공간이 있는 여러 프로세스 사용
+- 한 프로세스의 충돌이 다른 프로세스에 직접적인 영향을 미치지 않으므로 이러한 격리를 통해 안정성이 향상될 수 있음
+- but **프로세스 간 통신은 스레드에 비해 더 복잡하고 느릴 수 있음**
+- **많은 메모리와 CPU 점유시간을 가지며 Context Switching이 느림**
+
+### Multi-Thread
+- 단일 프로세스에 여러 스레드가 포함될 수 있음
+- 프로세스 내의 모든 스레드는 동일한 메모리 공간을 공유하므로 스레드 간에 정보를 더 쉽고 빠르게 공유할 수 있음
+- but **동일 메모리를 공유하므로 경쟁 조건 및 교착 상태**와 같은 문제를 방지하려면 관리가 필요함
+- **적은 메모리와 적은 CPU 점유 시간을 가지며 Context Switching 비용이 낮음**
+
+&rarr; ***메모리를 나누어 안정성을 높일 때는 Multi-process를 Context Switching이 많고 빠른 처리 속도를 요구할 경우 Multi-thread를 이용하는게 좋음***
+
+[Multi-Process & Multi-Thread detail](./MultiProcess_MultiThread.md)
+
+---

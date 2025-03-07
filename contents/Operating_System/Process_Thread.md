@@ -58,6 +58,8 @@
     - **어떤 하나의 job을 쪼개서 여러 sub-job으로 나누고 이를 물리적으로 분리된 구조에서 동시에 처리해 완성**
 &rarr; **paallelism 없이 concurrency를 가지는 것이 가능**
 
+![Concurrency_Parallelism](./img/Concurrency_Parallelism.jpeg)
+
 #### 멀티 프로세서나 멀티 코어 구조가 발전하기 전에는 싱글 프로세서로 재빨리 프로세스를 전환해 concurent하게 동작하지만 parallel하게 동작하는 것처럼 보이게 만들었음
 
  
