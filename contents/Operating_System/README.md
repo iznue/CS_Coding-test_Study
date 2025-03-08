@@ -12,3 +12,7 @@
 
 - [Multi Process VS Multi Thread](Topics.md#multi-process-vs-multi-thread)
 
+- [Critical Section](Topics.md#critical-section-임계영역)
+
+- [동기화 메커니즘 : Spinlock & Mutex & Semaphore](Topics.md#동기화-메커니즘--spinlock--mutex--semaphore)
+
