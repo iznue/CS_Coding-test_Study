@@ -2,16 +2,29 @@
 
 ## 📝 Topics
 
-- [Data Structure](Topics.md#Data-Structure)
-- [Array](Topics.md##Array-(배열))
-- [Linked List](Topics.md##Linked-List-(연결-리스트))
-- [Stack](Topics.md##Stack)
-- [Queue](Topics.md##Queue)
-- [Tree](Topics.md##Tree)
-- [Binary Tree](Topics.md##Binary-Tree)
-- [Graph](Topics.md##Graph)
+- [Data Structure](Topics.md#data-structure)
 
-- [Deque](Topics.md##Deque)
-- [Heap](Topics.md##Heap)
-- [Hash Table](Topics.md##Hash-Table)
-- [Trie](Topics.md##Trie-=-Prefix-tree,-Digital-search-tree,-Retrieval-tree)
+- [Array](Topics.md#array-배열)
+
+- [Linked List](Topics.md#linked-list-연결-리스트)
+
+- [Stack](Topics.md#stack)
+
+- [Queue](Topics.md#queue)
+
+- [Tree](Topics.md#tree)
+
+- [Binary Tree](Topics.md#binary-tree)
+
+- [Graph](Topics.md#graph)
+
+---
+## Advanced Data Structure
+
+- [Deque](Topics.md#deque)
+
+- [Heap](Topics.md#heap)
+
+- [Hash Table](Topics.md#hash-table)
+
+- [Trie](Topics.md#trie--prefix-tree-digital-search-tree-retrieval-tree)
