@@ -27,3 +27,9 @@
 - [Two pointer](Topics.md#two-pointer)
 
 - [KMP](Topics.md#kmp-knuth-morris-pratt--문자열-매칭-알고리즘)
+
+- [Knapsack](Topics.md#knapsack-problem)
+
+- [Hanoi tower](Topics.md#하노이-탑)
+
+- [BitMask](Topics.md#bitmask)

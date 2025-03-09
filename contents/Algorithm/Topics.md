@@ -3,8 +3,8 @@
 - 순차적(concatenation)구조 : 코드가 위 아래 순차적으로 실행되는 구조
 - 선택적(selection)구조 : 조건에 따른 결과에 따라 프로그램 실행 흐름을 변경하는 구조
 - 성능평가 Case
-     - 최선의 경우 (best case) : 최적의 입력 상태에서 작업을 완료하는데 가장 연산 횟수가 적은 경우
-     - 최악의 경우 (worst case) : 최악의 입려 상태에서 작업을 완료하는데 가장 연산 횟수가 많은 경우
+    - 최선의 경우 (best case) : 최적의 입력 상태에서 작업을 완료하는데 가장 연산 횟수가 적은 경우
+    - 최악의 경우 (worst case) : 최악의 입려 상태에서 작업을 완료하는데 가장 연산 횟수가 많은 경우
     
     &rarr; 알고리즘 분석 시 **최악의 경우 & 시간 복잡도**로 성능을 파악함
 
@@ -19,7 +19,7 @@
 - [Brute-Force (DFS & BFS)](#완전탐색-brute-force)
 - [Permutation, Combination, PowerSet](#순열--조합--부분집합)
 - [Backtracking](#백트래킹-backtracking)
-     - [N-Queen](#
+    - [N-Queen](#n-queen)
 - [Sorting](#정렬-알고리즘-sorting)
 - [Divide & Conquer](#분할-정복법-divide--conquer)
 - [Greedy](#탐욕-알고리즘-greedy)
@@ -28,6 +28,9 @@
 - [MST (Union-Find, Kruskal)](#mst--minimum-spanning-tree)
 - [Two pointer](#two-pointer)
 - [KMP](#kmp-knuth-morris-pratt--문자열-매칭-알고리즘)
+- [Knapsack](#knapsack-problem)
+- [Hanoi tower](#하노이-탑)
+- [BitMask](#bitmask)
 
 </details>
 
@@ -100,7 +103,7 @@
 ---
 ## 백트래킹 (Backtracking)
 - **DFS 방식을 기반**으로, **불필요한 경우를 배제하며 원하는 해답에 도달할때까지 탐색**하는 전략
-     - DFS 문제에서 모든 노드를 탐색할 필요가 없을 경우 적용
+    - DFS 문제에서 모든 노드를 탐색할 필요가 없을 경우 적용
 - **스택**을 이용해 퇴각하며 다음 탐색을 진행함
 
 > #### 알고리즘
@@ -113,7 +116,9 @@
 
 ## N-Queen
 - nxn 체스판에 n개의 퀸을 서로 충돌하지 않게 놓는 방법을 구하는 문제
-- n개의 퀸을 놓을 수 있는 모든 경우의 수를 시도하는 경우(완전탐색 방식) 매우 큰 시간복잡도를 가짐 &rarr; 효율적으로 해결하기 위해 Backtracking 알고리즘을 사용
+- n개의 퀸을 놓을 수 있는 모든 경우의 수를 시도하는 경우(완전탐색 방식) 매우 큰 시간복잡도를 가짐
+
+    &rarr; 효율적으로 해결하기 위해 Backtracking 알고리즘을 사용
 - Backtracking을 적용해 상태공간 트리를 만들고 유망한 노드들의 자식만 검사함으로써 경우의 수를 줄임
 
 ### Backtracking 문제를 풀기 위해 결정되어야 할 사항
@@ -164,11 +169,15 @@
 ### 합병 정렬 (Merge sort)
 - 분할 정복 방식으로 설계된 알고리즘 &rarr; **분할 과정과 합병 과정이 나뉨**
 - 입력으로 하나의 배열을 받고 연산 중 두개의 배열로 계속 쪼개나간 뒤 합치면서 최후에 하나의 정렬을 출력
-- **합병 과정의 시간복잡도 = 0(n)** / **분할 과정의 시간복잡도 = 0(log n)** &rarr; 분할별로 합병을 진행하므로 **시간복잡도 = 0(nlog n)**
+- **합병 과정의 시간복잡도 = 0(n)** / **분할 과정의 시간복잡도 = 0(log n)**
+
+    &rarr; 분할별로 합병을 진행하므로 **시간복잡도 = 0(nlog n)**
 - 정렬을 위한 배열을 하나 더 생성하므로 **공간복잡도 = 0(2n)**
 
 ### 퀵 정렬 (Quick sort)
-- 분할 정복 방식으로 설계된 알고리즘 &rarr; **pivot point**를 설정해 이를 기준으로 작은 값은 왼쪽, 큰 값은 오른쪽으로 옮기는 방식
+- 분할 정복 방식으로 설계된 알고리즘
+
+    &rarr; **pivot point**를 설정해 이를 기준으로 작은 값은 왼쪽, 큰 값은 오른쪽으로 옮기는 방식
 - 분할과 동시에 정렬을 진행하므로 총 비교횟수는 nlog n, **시간복잡도 = 0(nlog n)**
 - **배열이 이미 정렬된 경우가 최악의 경우임**. 이 경우 분할이 n만큼 발생해 시간복잡도가 0(n<sup>2</sup>)임
 - 일반적으로 퀵정렬이 합병정렬보다 20% 이상 빠름
@@ -180,7 +189,9 @@
 - 내림차순 정렬 시 최대 힙 / 오름차순 정렬 시 최소 힙
 
 ### 기수 정렬 (Radix sort)
-- 어떠한 비교 연산도 실행하지 않는 독특한 정렬 기법 &rarr; LSD(least significant digit) : 가장 낮은 자릿수 / MSD(most significant digit) : 가장 높은 자릿수
+- 어떠한 비교 연산도 실행하지 않는 독특한 정렬 기법
+
+    &rarr; LSD(least significant digit) : 가장 낮은 자릿수 / MSD(most significant digit) : 가장 높은 자릿수
        - 각 자릿수가 0~9범위라는 점에 착안해 **10개의 bucket**을 만들어 입력 데이터를 값에 따라 상자에 넣음
        - 이후 출력리스트를 만들 때 순차적으로 bucket에서 읽어옴
        - 2자리 이상의 숫자는 1의 자릿수와 10의 자릿수를 따로 사용해 정렬함
@@ -201,7 +212,9 @@
       - Divide : 해결할 문제를 비슷한 유형의 여러 작은 부분으로 나눔
       - Conquer : 나눈 부분 재귀적으로 해결. 문제 규모가 나눌 수 없는 단위가 되면 탈출 조건을 설정하고 해결
       - Combine : 각 부분 문제의 해답을 모아 원래 문제의 해답 도출
+
 &rarr; 대표적으로 정렬 알고리즘 중 **퀵 정렬, 합병 정렬**과 **이진탐색, 선택 문제, 고속 푸리에 변환** 문제들이 있음
+
 &rarr; **재귀 알고리즘을 사용하기에 오버헤드**가 발생할 수 있으며 스택에 다양한 데이터를 보관해야하므로 **스택 오버플로우**를 고려해야함
 
 - 선택 정렬과 삽입 정렬의 최대 실행시간은 0(n<sup>2</sup>)이므로 입력 배열 크기가 크면 오랜 수행시간이 걸림
@@ -287,6 +300,21 @@ def fibonacci_td(n):
           _memo[n] = fibonacci_td(n-1) + fibonacci_td(n-2)
      return _memo[n]
 ```
+
+---
+## Knapsack problem
+- 어떤 물건들의 집합이 주어졌을 때, 가방에 담을 수 있는 **최대 가치(이익)의** 물건들의 집합을 결정하는 문제
+- 유형
+    - 0/1 knapsack problem &rarr; dynamic programming 이용
+    - fractional knapsack problem &rarr; greedy 이용
+
+![knapsack](./img/knapsack.png)
+
+&rarr; b와 달리 c는 물건을 쪼개서 가방에 넣음
+***쪼갤 수 있는 경우를 fractional problem, 그러지 못한 경우를 0/1 knapsack problem이라 함***
+
+[0/1 Knapsack](./0_1_Knapsack.md)
+[Fractional Knapsack](./Fractional_knapsack.md)
 
 ---
 |분류|Greedy Algorithm|Dynamic Programming|
@@ -377,6 +405,7 @@ void merge(int a, int b) {
 3. 사이클을 만들지 않을 때에만 해당 간선 추가 (사이클 확인은 union find 알고리즘 이용)
 
 &rarr; 사이클이 발생하는 경우는 **같은 그래프에 속한 두 노드를 연결**했을 때임
+
 &rarr; 두 노드가 같은 그래프에 속하는지 아닌지는 **Union find** 개념으로 판별
 
 ![kruskal](https://github.com/user-attachments/assets/e68945bd-c9a5-49a5-8c78-97ac572ad95c)
@@ -486,6 +515,56 @@ int main() {
 - KMP는 반복이 최악의 경우에도 탐색 문자열 크기의 2배를 넘지 않으므로 시간복잡도가 0(n+m)
 
 ---
+## 하노이 탑
+- 아래 조건을 만족시키며, 한 기둥에 꽂힌 원판들을 그 순서 그대로 다른 기둥으로 옮겨서 다시 쌓는 문제
+    - 1. 한번에 하나의 원판만 옮길 수 있음
+      2. 원판을 옮길 때는 맨 위의 원판을 다른 기둥으로 옮겨야 함
+      3. 큰 원판이 작은 원판 위에 있으면 X
+     
+### 구현
+1. 기둥 1에서 n-1개의 원반을 기둥 2로 옮김
+2. 기둥 1에서 1개의 원반을 기둥 3으로 옮김
+3. 기둥 2에서 n-1개의 원반을 기둥 3으로 옮김
+4. 반복
 
+&rarr; ***순환적으로 접근***
 
+```c++
+#include <iostream>
+using namespace std;
 
+void hanoi(int n, char from, char temp, char to) {
+    if (n == 1) cout << "원판 1 // " << from << " ==> " << to << endl;
+    else {
+        hanoi(n - 1, from, to, temp);
+        cout << "원판 " << n << " // " << from << " ==> " << to << endl;
+        hanoi(n - 1, temp, from, to);
+    }
+}
+
+int main() {
+    int n = 3;
+    char from = 'A', temp = 'B', to = 'C';
+
+    hanoi(n, from, temp, to);
+
+    return 0;
+}
+```
+
+---
+## BitMask
+- 이진수를 사용하는 컴퓨터의 연산 방식을 이용해 정수의 이진수 표현을 자료 구조로 쓰는 기법
+&rarr; 이진수 0/1을 이용하므로 하나의 비트가 표현할 수 있는 경우는 2가지
+
+#### 장점
+1. 빠른 수행시간
+    - 비트마스크 연산은 bit 연산이기 때문에 0(1)에 구현되는 경우가 많음
+2. 짧은 코드
+    - 다양한 집합 연산들을 비트연산자로 한 줄로 작성 가능
+3. 적은 메모리 사용량
+    - 하나의 정수로 많은 경우의 수를 표현할 수 있으므로 메모리 측면에서 효율적 ex) bit가 5인 경우 2<sup>5</sup>개의 경우 표현
+
+![bit_operator](./img/bit_operator.png)
+
+![bitmask](./img/bitmask.png)
