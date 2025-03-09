@@ -10,6 +10,8 @@
 
 - [Backtracking](Topics.md#백트래킹-backtracking)
 
+     - [N-Queen](Topics.md#n-queen)
+
 - [Sorting](Topics.md#정렬-알고리즘-sorting)
 
 - [Divide & Conquer](Topics.md#분할-정복법-divide--conquer)

@@ -19,6 +19,7 @@
 - [Brute-Force (DFS & BFS)](#완전탐색-brute-force)
 - [Permutation, Combination, PowerSet](#순열--조합--부분집합)
 - [Backtracking](#백트래킹-backtracking)
+     - [N-Queen](#
 - [Sorting](#정렬-알고리즘-sorting)
 - [Divide & Conquer](#분할-정복법-divide--conquer)
 - [Greedy](#탐욕-알고리즘-greedy)
@@ -109,6 +110,35 @@
 > 2. 각 노드가 유망한지 검사
 > 3. 만약 해당 노드가 유망하지 않으면, 그 노드의 부모로 되돌아가 다음 자식 노드로 검색 진행
 &rarr; 대표적으로 **N-Queen 문제**가 백트래킹의 예시임
+
+## N-Queen
+- nxn 체스판에 n개의 퀸을 서로 충돌하지 않게 놓는 방법을 구하는 문제
+- n개의 퀸을 놓을 수 있는 모든 경우의 수를 시도하는 경우(완전탐색 방식) 매우 큰 시간복잡도를 가짐 &rarr; 효율적으로 해결하기 위해 Backtracking 알고리즘을 사용
+- Backtracking을 적용해 상태공간 트리를 만들고 유망한 노드들의 자식만 검사함으로써 경우의 수를 줄임
+
+### Backtracking 문제를 풀기 위해 결정되어야 할 사항
+1. 상태공간트리의 구조를 결정
+2. 유망한지 아닌지 따질 조건 결정 &rarr; 유망함의 기준 설정 (promising function)
+
+#### sketch idea
+> 1. 첫번째 queen을 임의로 둠
+> 2. 그 다음 queen을 safe palces에 둠
+> 3. 이 과정 반복
+>      - 위치에 둬야 할 queen이 더 이상 없을 경우 (모든 queen이 자리잡을 때 까지)
+>      - no safe place is left
+>  4. 이때 3과정에서 no safe place is left일 경우, 그 이전 자리를 둔 queen의 자리를 다시 바꿈 = backtracking
+>
+> **Queen의 특성**
+> 1. 퀸은 수직선상에 있는 말을 공격할 수 있음
+> 2. 퀸은 수평선상에 있는 말을 공격할 수 있음
+> 3. 퀸은 대각선상에 있는 말을 공격할 수 있음
+>
+> &rarr; 퀸을 놓을 수 없는 자리에 대한 판단 = (유망성 판단 & 가지치기)
+> 1. 퀸은 한 row에 하나만 둘 수 있음
+> 2. 퀸은 한 column에 하나만 둘 수 있음
+> 3. 대각선에 퀸이 있다면 둘 수 없음
+
+[N-Queen](./code/n_queen.cpp)
 
 ---
 ## 정렬 알고리즘 (Sorting)
