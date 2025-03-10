@@ -29,7 +29,10 @@
 
 ---
 ## Shell
-- 사용자가 운영체제의 기능을 조작할 수 있도록 인터페이스를 제공하는 응용 프로그램 &rarr; 대표적으로 **리눅스의 bash**
+- 사용자가 운영체제의 기능을 조작할 수 있도록 인터페이스를 제공하는 응용 프로그램 
+
+&rarr; 대표적으로 **리눅스의 bash**
+
 - 조작 방법에 따른 분류
      - CLI (Command-line-interface) : 터미널 환경으로 타이핑으로만 조작 가능
      - GUI (Graphic user interface) : 그래픽으로 구성된 쉘
@@ -43,7 +46,7 @@
 
 **User Mode, Kernel Mode는 system call을 통해 전환됨**
 
-![operating_system2](./img/operating_system2.png)
+![operating_system2](./img/operating_system2.jpg)
   
 ---
 ## API (Application Programming Interface)
