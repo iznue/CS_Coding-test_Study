@@ -56,115 +56,117 @@
 > - **In the middle desired location** Data insertion / deletion : 0(n) &rarr; because there's a process to lookup data up to the desired element, so 0(n) + 0(1)
     -
 ### Array vs LinkedList
-- 데이터 접근 속도
-     - Array는 인덱스를 통한 random access 지원 &rarr; 시간 복잡도 0(1)로 빠르게 접근 가능
-     - LinkedList는 순차 접근 방식 사용 &rarr; 시간 복잡도 0(n)
-- 데이터 삽입 & 삭제 속도
-     - Array는 데이터를 중간 or 맨 앞에 삽입/삭제하는 경우 shift가 필요해 데이터가 많아질수록 비효율적
-     - LinkedList는 중간 삽입/삭제는 0(n)의 시간 복잡도를 갖지만, 맨 앞/뒤에 삽입하는 경우 0(1)의 시간복잡도를 가짐
-     - but LinkedList는 데이터 삽입/삭제마다 메모리 할당 & 해제가 일어나 시간복잡도는 빨라도 System call
-- 메모리 할당
-     - Array는 정적 메모리 할당 (compile time)
-     - LinkedList는 동적 메모리 할당 (runtime)
-     - Array는 데이터 삽입 시 모든 공간이 다 차면 새로운 메모리 공간이 필요하지만 LinkedList는 동적으로 할당받음
+- Data Access Rate
+     - Array supports 'random access' through index &rarr; fast access with time complexity 0(1)
+     - LinkedList uses sequential approach &rarr; time complexity 0(n)
+- Data Insertion / Delete Rate
+     - Array needs shift when inserting / deleting data in the middle or at the beginning, making it inefficient as there's more data
+     - LinkedList has time complexity of 0(n) for inserting / deleting intermediate, but for front/back insertion it has time complexity of 0(1)
+     - but LinkedList allows memory allocation and release for every data insertion/deletion, so it has fast time complexity but can occur the System call
+     - Array is a static memory allocation (compile time)
+     - LinkedList is dynamic momory allocation (runtime)
+     - Array requires new memory space when all the space is full while insert data, but LinkedList is dynamically assigned
 
-&rarr; **데이터 삽입/삭제가 빈번하면 LinkedList, 데이터 접근 속도가 중요하면 Array 사용 권장**
+&rarr; **Recommend to use LinkedList if data insertion/deletion is frequent and Array if data access speed is critical**
 
 ---
 ## Stack
-- 순서가 보존되는 선형 데이터 구조, 삽입/삭제 연산이 한 방향에서 이루어짐
-- 가장 마지막 요소(최근요소)부터 처리하는 LIFO(Last In First Out)
+- Linear data structure where order is preserved
+- Insertion / Deletion operations are performed in one direction
+- LIFO(Last In First Out) method that process from the last(recent) element
 
-#### 주요 연산
-- 'push' : 스택의 top에 원소 삽입
-- 'pop' : 스택의 top에 있는 원소 삭제 및 반환
-- 'peek' : 스택의 top에 있는 원소 반환
+#### Major Operation
+- 'push' : insert element into the top of stack
+- 'pop' : delete and return element at the top of stack
+- 'peek' : return element in the stack's top
 
-> #### 시간복잡도 & 공간복잡도
-> - top 데이터 조회 : 0(1)
-> - 특정 데이터 조회 : 0(n)
-> - 데이터 삽입/삭제 : 0(1)
+> #### Time complexity & Space complexity
+> - top data lookup : 0(1)
+> - specific data lookup : 0(n)
+> - insert / delete data : 0(1)
 
-### Stack 활용
-- system stack / runtime stack : 프로그램 함수 호출과 복귀에 따른 실행 순서 관리
-- interrupt routine 처리
-- 수식의 후위 표기법 (postfix notation)
-- 계산기 검사
-- 깊이 우선 탐색 (DFS)
+### Stack Utilization
+- system stack / runtime stack : Managing in order of execution following the program function call and return
+- Handling interrupt routine
+- Postfix notation of an expression
+- Calculation check
+- DFS Algorithm
 
-> **프로그램의 함수 호출과 복귀에 따른 실행 순서 관리 과정**
-> 1. 함수 호출 발생 시 stack frame에 지역변수, 매개변수, 수행 후 복귀할 주소 등의 정보를 저장해 시스템 스택에 삽입
-> 2. 함수 실행이 끝나면 시스템 스택의 top에 있는 stack frame 원소를 pop, frame에 저장된 복귀 주소를 확인하고 복귀
-> 3. 함수 호출 - 복귀에 따라 해당 과정을 반복, 전체 프로그램 수행 종료 시 시스템 스택은 공백 스택이 됨
-&rarr; 함수 호출은 가장 마지막에 호출된 함수가 가장 먼저 실행 완료하고 복귀하는 후입선출 구조이므로 스택을 이용해 관리 !
+> **Process of managing the order of execution accordiing to the program's function call and return**
+> 1. In the event of a function call, the stack frame stores information such as local variables, parameters, and address to return after execution and inserts it into the system stack 
+> 2. When the function execution ends, pop the stack frame element in the top of the system stack, and check the return address stored in the frame and return
+> 3. Function call - repeat this process as it returns, and the system stack becomes blank stack when the entire program execution ends 
+
+&rarr; Function call is a LIFO structure in which the last called function completes execution first and return, so manage it using the stack !
 
 --- 
 ## Queue
-- 한 방향에서는 삽입 / 반대 방향에서는 삭제연산이 이루어지는 선형 자료구조
-- **FIFO(First in first out) : 먼저 들어간 원소가 먼저 나옴**
+- Linear data structures with insertion/deletion operations in one direction / deletion operations in one direction / deletion operations in the other direction
+- **FIFO(First in first out) : The element that entered first comes out first**
 
-#### 주요 함수
-- 'push' : 데이터 추가
-- 'pop' : queue의 front 데이터 삭제
-- 'front' : 제일 최상위 데이터 반환
-- 'back' : 제일 마지막 데이터 반환
-- 'size' : queue의 현재 사이즈 반환
-- 'empty' : 비어있는지 확인
-- 'swap' : 두 queue의 내용 바꾸기
+#### Major Operation
+- 'push' : add data
+- 'pop' : delete the front data of queue
+- 'front' : return the highest data
+- 'back' : return the latest data
+- 'size' : return the current size of queue
+- 'empty' : check if queue is empty
+- 'swap' : change the contents of two queues
 
-> #### 시간복잡도 & 공간복잡도
-> - front 데이터 조회 : 0(1)
-> - 특정 데이터 조회 : 0(n)
-> - 데이터 삽입/삭제 : 0(1)
+> #### Time complexity & Space complexity
+> - front data lookup : 0(1)
+> - specific data query : 0(n)
+> - insert/delete data : 0(1)
 
-### Queue 활용
-- 프로세스 레디 큐
-- 스케쥴링
-- 캐시 구현
-- 너비 우선 탐색 (BFS)
+### Queue Utilization
+- Process ready queue
+- Scheduling
+- Cache Implementation
+- BFS
 
 ## Priority Queue
-- 들어간 순서에 상관없이 우선순위가 높은 데이터가 먼저 나옴
-- 값을 비교해야 하므로 null을 허용하지 않음
-- 내부는 이진트리 힙으로 구성됨
+- Regardless of the entering order, higher priority data comes first  
+- Don't allow null because values need to be compared
+- Inside consists of binary tree heaps
 
-#### 주요 기능
-- 'enqueue' : queue에 새 요소 삽입
-- 'dequeue' : queue에서 최대 우선 순위 요소를 삭제하고 해당 값 반환
-- 'peek' : queue에서 최대 우선순위 요소 반환
+#### Major Operations
+- 'enqueue' : insert new element in the queue
+- 'dequeue' : delete the highest priority element in the queue and return it
+- 'peek' : return the highest priority element in the queue
 
-> 1. 모든 항목에는 우선순위가 존재
-> 2. 우선순위가 높은 요소는 우선 순위가 낮은 요소보다 먼저 queue에서 제외
-> 3. 두 요소의 우선 순위가 같으면 queue의 순서에 따라 제공
+> 1. All items has priority
+> 2. High-priority elements are excluded from the queue before low-priority elements
+> 3. If the two elements have the same priority, provide them in the order of queue
 
-#### Priority Queue 구현
-- 배열, 연결리스트, 힙으로 구현 가능
-- **Heap이 최악의 경우에도 0(log n)을 보장**하므로 보통 힙으로 구현함
-> **1. List로 구현**
-> - 정렬되지 않은 배열 : 삽입 0(1) 루트삭제 0(n)
-> - 정렬된 배열 : 삽입 0(n) 루트삭제 0(1)
+#### Priority Queue Implementation
+- Can be implemented with array, linkedlist, heap
+- **Heap guarantees 0(log n) even in the worst case**, so it's usually implemented as a heap
+> **1. Implement with List**
+> - Unaligned Array : Insertion 0(1), Delete root 0(n)
+> - Aligned Array : Insertion 0(n), Delete root 0(1)
 >
-> **2. Heap으로 구현**
-> 1. 삽입 연산
-> - 새로운 요소를 마지막 레벨에 추가, 부모 노드와 비교해 조건(부모 노드보다 값이 크거나 or 작거나)이 성립되는 경우 위치 조정
-> - 루트노드까지 조정하는게 최악의 경우 &rarr; 시간복잡도 0(log n)
-> 2. 삭제 연산
-> - 루트노드가 삭제됨에 따라 힙의 특성을 유지하기 위해 마지막 노드를 루트로 이동
-> - 다시 힙의 특성을 만족할 때까지 조정 진행 (= heapify)
+> **2. Implement with Heap**
+> 1. Insert operation
+> - Add new element at the last level, and adjust the position when the condition (greater or smaller than the parent node) is established compared to the parent node
+> - Worst case of adjusting to root node &rarr; Time complexity 0(log n)
+> 2. Delete operation
+> - Move the last node to the root to maintain the properties of the heap as the root node is deleted
+> - Adjustment proceeds until hip characteristics are satisfied again (=heapify)
 
-## Stack ↔ Queue 구현
-- stack은 LIFO, queue는 FIFO이므로 들어오고 나갈 떄 저장된 순서를 뒤집으면 서로간에 구현이 가능함
+## Stack ↔ Queue Implementation
+- Since stack is LIFO and queue is FIFO, it can be implemented by reversing the stored order when entering and leaving
 
 #### Stack &rarr; Queue
-- 뺄 때 다른 스택으로 옮겨서 빼기 !
-- enqueue : a stack에 push / dequeue : b 스택에 남은게 있다면 b에 있는 것을 pop, 없다면 a 스택에 있는 것을 모두 pop해서 b로 push하고 b에 있는 것을 pop
+- Move it to another stack and take it out
+- Enqueue : push to the A stack
+- Dequeue : pop the one in stack b, pop all the ones in stack A and push to B, and then pop the one in stack b
 
 [stack_to_queue](./code/Stack/stack_to_queue.cpp)
 
 #### Queue &rarr; Stack
-- 넣어줄 때 순서를 바꿔서 넣기 !
-- push : main queue에 데이터가 있다면 모두 dequeue해서 sub queue로 넣음. 그 후 main queue에 삽입하려는 데이터를 삽입하고, sub queue로 옮겨 놓은 것을 모두 dequeue해서 main queue로 넣음
-- pop : main queue에 있는 것을 dequeue함
+- Reverse the order and put it in
+- push : If there's data in the main queue, make all of them dequeue and put it into sub queue. After that, put inser the data that you want to put into the main queue, and dequeue everything you move to the sub queue and put it into the main queue
+- pop : Dequeue the datas in main queue
 
 [queue_to_stack](./code/Queue/queue_to_stack.cpp)
 
