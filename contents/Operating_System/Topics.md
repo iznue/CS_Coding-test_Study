@@ -4,6 +4,8 @@
 
 [Operating System detail](./Operating_system.md)
 
+[operating_system_overview](./img/operating_system_overview.png)
+
 <details>
 <summary>Table of Contents</summary>
 
@@ -13,13 +15,15 @@
 - [Context Switching](#context-switching)
 - [Multi Process VS Multi Thread](#multi-process-vs-multi-thread)
 - [Critical Section](#critical-section-임계영역)
-- [동기화 메커니즘 : Spinlock & Mutex & Semaphore](#동기화-메커니즘--spinlock--mutex--semaphore)
+- [프로세스 동기화 메커니즘 : Spinlock & Mutex & Semaphore](#프로세스-동기화-메커니즘--spinlock--mutex--semaphore)
+- [Process Scheduling](#process-scheduling)
+- [CPU Scheduling](#cpu-scheduling)
 
 </details>
 
 ---
 ## Memory
-- RAM(Random access memory)의 다른 표현으로, CPU가 처리할 데이터나 명령어들을 임시로 저장하는 작업 공간 역할
+- RAM(Random access memory)의 다른 표현, CPU가 처리할 데이터나 명령어들을 임시로 저장하는 작업 공간 역할
 - 프로그램 실행을 위해 먼저 프로그램이 메모리에 로드되어야 함
 - 프로그램을 실행하게 되면 **OS는 메모리에 공간을 할당함**
 
@@ -110,17 +114,17 @@
 <details>
 <summary>과정</summary>
 
-1. Process P1이 실행되는 도중 인터럽트나 시스템 콜이 발생합니다.
+1. Process P1이 실행되는 도중 인터럽트나 시스템 콜이 발생
 
-2. PCB1에 P1의 정보를 저장하고 PCB2의 상태를 불러옵니다.
+2. PCB1에 P1의 정보를 저장하고 PCB2의 상태를 불러옴
 
-3. Process P2를 실행합니다.
+3. Process P2를 실행
 
-4. P2가 실행되는 도중 인터럽트나 시스템 콜이 발생합니다.
+4. P2가 실행되는 도중 인터럽트나 시스템 콜이 발생
 
-5. PCB2에 P2의 정보를 저장하고 PCB1의 상태를 불러옵니다.
+5. PCB2에 P2의 정보를 저장하고 PCB1의 상태를 불러옴
 
-6. Process P1을 실행합니다.
+6. Process P1을 실행
 
 </details>
 
@@ -161,7 +165,7 @@
 
 ---
 ## Critical Section (임계영역)
-- 여러 프로세스가 데이터를 공유하며 수행될 때, 각 프로세스에서 공유 데이터를 접근하는 프로그램 코드 블록
+- 여러 프로세스가 또는 스레드가 공유 데이터(shared resource)에 접근하는 프로그램 코드 블록
 
 &rarr; ***여러 프로세스가 동일 자원을 동시에 참조하여 값이 오염될 위험 가능성이 있는 영역***
 
@@ -172,28 +176,27 @@
 ⇒ 하나의 메서드에 하나의 스레드만이 진입해서 실행(= mutual exclusion) 하는 메서드 영역 = Critical Section
 but 불필요한 부분까지 동기화 하는 경우, 과도한 lock으로 병목 현상을 발생시켜 성능이 저하될 가능성이 높으므로 주의해야함
 
+#### 여러 프로세스가 동시 접근하면 1. 데이터 불일치, 2. Race Condition, 3. Deadlock 등의 문제가 발생할 수 있으므로 이를 상호 배제(Mutual exclusion)방식으로 해결해야함 !
+
+
 ### Critical Section Problem
 - 임계 영역을 만족하기 위해서는 아래 3가지 문제 소지들을 해결해야함
-<details>
-<summary>problems</summary>
 
-**1. Mutual Exclusion (상호 배제)**
+***1. Mutual Exclusion (상호 배제)***
 - 한 순간에 오직 하나의 스레드만이 임계 영역에 진입할 수 있음을 보장
-- 여러 스레드가 동시에 임계 영역에 접근하지 못하도록 하는 것을 의미
+- 여러 스레드 또는 프로세스가 shared resource에 동시 접근하지 못하도록 critical section에 대한 접근 조정
 
-**2. Progress (진행)**
+***2. Progress (진행)***
 - 어떤 스레드가 임계 영역에 진입하기 위해 대기 중인 상태에서, 다른 스레드가 진입할 수 있음을 보장해야 함
 
-**3. Bounded Waiting (제한된 대기)**
+***3. Bounded Waiting (제한된 대기)***
 - 한 스레드가 임계 영역에 진입하기 위해 대기하는 시간은 제한되어야 함
 - 특정 스레드가 계속해서 다른 스레드에게 우선권을 주며 무제한으로 대기하는 상황이 발생하지 않도록 해야 함
 
-</details>
-
 ---
-## 동기화 메커니즘 : Spinlock & Mutex & Semaphore
+## 프로세스 동기화 메커니즘 : Spinlock & Mutex & Semaphore
 - 동기화 메커니즘은 여러 개의 스레드가 **공유 자원에 동시 접근하는 것을 조절하고 조율하는데 사용되는 기술**
-- 주로 운영체제의 **커널(Kernel)**에서 사용됨
+- 주로 운영체제의 **커널(Kernel)에서** 사용됨
 - 동기화 메커니즘으로 사용되는 도구로는 **Spinlock, Mutex, Semaphore** 등이 있음
 
 &rarr; ***다중 스레드 환경에서 공유 자원에 대한 접근을 조절하여 Critical section에서의 Race Condition과 같은 문제를 해결하기 위해 사용됨***
@@ -209,7 +212,7 @@ but 불필요한 부분까지 동기화 하는 경우, 과도한 lock으로 병�
     &rarr; 멀티 프로세스 시스템에서만 사용 가능
 - 상태가 오직 **Lock / Unlock**만 존재하므로 한번에 하나의 컴포넌트만 접근 가능 & 주체가 동일해야함
 
-### Mutex = Mutual Exclusion
+### Mutex
 - 상태가 **Lock / Unlock**만 존재한다는 점은 spinlock과 동일
 - Spinlock이 임계영역이 언락되어 권한을 획득하기까지 Busy Waiting 상태를 유지한다면, mutex는 **Sleep 상태로 들어갔다 Wakeup 되면 다시 권한 획득을 시도함**
 - ***Locking 메커니즘으로 락을 걸은 스레드만이 임계영역을 나갈때 락을 해제할 수 있음***
@@ -260,13 +263,112 @@ but 불필요한 부분까지 동기화 하는 경우, 과도한 lock으로 병�
     - 각 프로그램이 실행되는 동안 사용자들이 상호작용 하도록 프로세스 간 CPU 코어를 자주 전홚함
     - CPU가 하나의 프로그램을 수행하는 시간을 매우 짧은 시간(ms)으로 제한해 번갈아 수행하도록 하면 CPU가 하나인 환경에서도 여러 사용자가 동시에 사용하는 듯한 효과를 줌
 
-### 프로세스 상태 
+### 프로세스의 생명 주기
 ![process_state](./img/process_state.png)
 
+- 프로세스 실행은 **CPU 실행(execution)과** **입/출력 대기(I/O wait)의** 사이클로 구성됨
 
-    New : 프로세스가 생성됨
-    Running : 프로세스의 Instruction이 실행됨
-    Waiting : (I/O 작업 완료나 신호 수신과 같은) 이벤트가 발생하기를 기다림
-    Ready : 프로세서에 할당되기를 기다림
-    Terminated : 프로세스가 실행을 끝냄
+&rarr; ***이를 CPU I/O Burst Cycle***이라 함
+
+> New : 프로세스가 생성됨, 메모리에 올라간 상태
+> 
+> Ready : 프로세서에 할당되기를 기다림 (다른 프로세스가 CPU를 사용하고 있는 상황)
+> 
+> Running : 프로세스의 Instruction이 실행됨, 프로세스가 CPU를 점령하여 명령어가 실행되고 있는 상태
+> 
+> Waiting : (I/O requests나 신호 수신과 같은) 이벤트가 완료되기를 기다림, 해당 작업이 완료되면 Ready Queue로 이동
+> 
+> Terminated : 프로세스 명령어가 끝까지 진행되었거나 중간에 exit()이 발생하면 프로세스가 종료됨
+
+---
+## CPU Scheduling
+- ***운영체제가 프로세스들에게 공정하고 합리적으로 CPU 자원을 배분하는 것***
+- CPU 스케줄링 알고리즘에 따라 프로세스에서 해야 하는 일을 스레드 단위로 CPU에 할당
+
+&rarr; CPU 이용률을 높게, 주어진 시간에 많은 일을 수행 / **ready queue에 있는 프로세스는 적게, 응답 시간을 짧게 설정하는 것이 목표**
+
+#### CPU 스케줄링이 왜 필요할까?
+- 프로세스가 CPU를 점유해 작업을 수행하는 도중 I/O or Interrupt가 발생하면 일시적으로 프로세스는 CPU를 사용하지 않는데도 점유하고 있음
+
+&rarr; 이러한 상황을 줄여서 CPU를 최대한 활용하면 프로세스들이 효율적으로 CPU를 사용할 수 있지 않을까?에서 시작됨
+
+#### Process Priority
+- 프로세스의 중요도에 따라 운영체제가 우선순위를 부여함
+- 우선순위가 높은 프로세스는 대표적으로 입출력이 많은 프로세스
+
+&rarr; 입출력 작업 완료 전끼지 입출력 집중 프로세스는 대기 상태이므로 다른 프로세스가 CPU를 사용할 수 있기 때문
+
+### Schedulng Queue
+- 각 프로세스의 PCB에 부여된 우선순위에 따라 CPU를 사용할 수 있도록 줄을 세우는 것
+- Ready queue (CPU를 사용하고 싶은 프로세스들) / Waiting queue (입출력장치 이용을 위해 대기 상태에 접어든 프로세스들)
+
+![scheduling_queue](./img/scheduling_queue.jpeg)
+
+&rarr; 프로세스는 종료될 때까지 위의 주기를 반복, 종료되면 모든 큐에서 제거되고 PCB 및 자원 할당이 해제됨
+
+#### CPU Scheduling 발생 상황
+> 1. 프로세스가 running → waiting 상태로 전환 (ex. I/O 요청 또는 하위 프로세스 종료를 위한 wait() 호출)
+> 
+> 2. 프로세스가 running → ready 상태로 전환 (ex. interrupt 발생)
+> 
+> 3. 프로세스가 waiting → ready 상태로 전환 (ex. I/O 완료)
+> 
+> 4. 프로세스 종료
+
+&rarr; 상황 1,4에서는 새 프로세스를 선택해야 함 but **상황 2,3에서는 Preemptive or Nonpreemptive 중에서 선택 가능**
+
+***Preemptive = 선점형 : 강제로 CPU 회수***
+
+&rarr; 비선점에 비해 context switching이 자주 발생해 오버헤드가 발생할 수 있지만 CPU 독점 현상 방지 가능
+
+***Nonpreemptive = 비선점형 : 강제로 빼앗지 않고 자진해서 CPU 반납***
+
+&rarr; 모든 프로세스가 골고루 자원을 사용할 수 없음 (자원 독점 가능)
+
+### Preemptive / Nonpreemptive에 속하는 CPU Scheduling Algorithm 기법의 종류
+- Preemptive
+    - SRT (Shortest Remaining Time) : SJF + RR / 짧은 시간 순서대로 수행 
+    - RR (Round-Robin) : 정해진 타임 슬라이스(CPU를 사용할 수 있는 정해진 시간)만큼동안 CPU 할당
+    - Multi-level queue : ready queue를 여러 개 사용 / queue마다 RR or FCFS 등 다른 스케줄링 알고리즘 적용
+    - Multi-level feedback queue : multi-level queue와 비슷하나 프로세스들이 큐를 이동할 수 있음 
+        - 정해진 타임 슬라이스 동안 해당 큐에서 실행이 끝나지 않으면 다음 큐로 삽입되어 CPU를 오래 사용해야 하는 프로세스는 점차 우선순위가 낮아짐
+- Nonpreemptive
+    - FCFS (First Come First Served) : ready queue에 삽입된 순서대로 CPU 할당
+    - SJF (Shortest Job First) : 예상 CPU 사용 시간이 짧은 프로세스 먼저 실행
+    - Priority : 가장 높은 우선순위를 가진 프로세스부터 실행
+        - 우선순위가 낮은 프로세스는 실행이 계속 연기돼 Starvation(기아) 상태에 빠질 수 있으며, Aging을 통해 시간 흐름에 따라 우선순위를 증가시켜 기아 현상을 방지함
+    - HRN (Highest Response ration Next) : 수행시간의 길이와 대기 시간을 모두 고려해 우선순위 결정
+    - Deadline : 작업을 명시된 시간이나 기한 내에 완료하도록 스케줄링
+
+### CPU가 여러개인 경우의 Scheduling
+**1. Multiple-Processor Scheduling**
+- Homogeneous processor인 경우
+    - queue에 한줄로 세워 각 프로세서가 알아서 꺼내가도록 but 특정 프로세서에서 수행돼야 하는 프로세스가 있는 경우 문제가 복잡해짐
+- Load sharing
+    - 별개의 큐 or 공동 큐를 사용해 일부 프로세서에 일이 몰리지 않도록 부하 조정
+- Symmetric Multiprocessing (SMP) : 각 프로세서가 알아서 스케줄링 결정
+- Asymmetric Multiprocessing : 하나의 프로세서가 시스템 데이터의 접근과 공유를 책임지고 나머지는 그에 따름
+
+ **2. Real-Time Scheduling**
+ - Hard real-time system : 정해진 시간 안에 반드시 끝내도록 (데드라인을 반드시 지킴)
+ - Soft real-time computing : soft real-time task는 일반 프로세스에 비해 높은 우선순위를 부여 (데드라인을 반드시 지키지는 않음)
+
+**3. Thread Scheduling**
+- Local Scheduling
+    - user 프로세스가 직접 어떤 thread에 CPU를 줄지 결정
+- Global Scheduling
+    - kernel level thread의 경우 커널의 단기 스케줄러가 결정
+    - OS가 알고리즘에 의거해 어떤 thread에 CPU에 줄지 결정
+
+---
+## Synchronous & Asynchronous VS Block & Non-Block
+- ***Sync & Async : 요청 작업에 대한 완료 여부를 확인해 작업을 순차적으로 수행할지 아닌지에 따라 결정되는 개념***
+    - **호출되는 함수의 완료**를 호출한 쪽에서 신경을 쓰냐 호출 받은 쪽에서 신경을 쓰냐의 차이
+
+- ***Block & Non-Block : 현재 진행중인 작업이 블락(대기)되느냐 안 되는냐에 따라 다른 작업을 수행할지가 결정되는 개념***
+    - blocking은 호출받은 쪾이 호출한 쪽에 제어권을 넘겨주지 않음 / non-blocking은 다시 제어권을 넘겨줌
+
+![sync_block](./img/sync_block.png)
+
+[Sync & Block detail](./Sync_Block.md)
 
