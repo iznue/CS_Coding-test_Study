@@ -6,6 +6,8 @@
 - [OSI 7 Layer](#osi-7-layer)
 - [TCP/IP](#tcpip-transmission-control-protocol--internet-protocol)
 - [TCP VS UDP](#tcp-vs-udp)
+- [SOME/IP](#someip)
+- [VSOME/IP](#vsomeip)
 
 </details>
 
@@ -120,3 +122,38 @@
 |대표적인 사용처|HTTP, HTTPS, FTP, SMTP, SSH|DNS, DHCP, VoIP, 온라인 게임, 스트리밍|
 
 &rarr; ***TCP는 신뢰성이 중요한 경우(웹 브라우징, 파일 전송 등)에 사용 / UDP는 속도가 중요한 경우(실시간 스트리밍, 게임 등)에 사용***
+
+[TCP VS UDP detail](./TCP_UDP.md)
+
+---
+## SOME/IP
+- SOME/IP (Scalable service-Oriented Middleware over IP)
+
+![someip](./img/someip.png)
+
+- **자동차 이더넷 (AUTOSAT Ethernet stack) 기반** 통신 프로토콜
+- SOA (Service-Oriented Architecture)를 사용해 **ECU 간의 통신을 지원**
+- 차량 기술이 발전함에 따라 CAN 통신과 같은 방식으로는 통신량을 감당하기 어려워 제안된 프로토콜임
+    - **대용량 데이터의 고속 송수신에 적합한 Ethernet과 IP를 이용**
+- AUTOSAT Adaptive Platform의 애플리케이션 간 통신을 담당하는 **미들웨어인 ara::com이 기본적으로 SOME/IP를 사용하는 것으로 정의되어 있음**
+
+- 서비스 기반 설계 : 네트워크 상에서 장치들은 특정 데이터나 기능을 서비스로 제공하거나 요청
+- 고속 데이터 전송 : Ethernet 기반 통신 사용
+- 확장성 : 새로운 장치나 서비스 추가시에도 시스템이 쉽게 탐지 및 동작함
+- AUTOSAR 표준 준수 : 제조사간 호환성이 뛰어남
+
+[SOME/IP detail](./SOMEIP.md)
+
+---
+## VSOME/IP
+![vsomeip](./img/vsomeip.jpeg)
+
+- AUTOSAR 기반의 SOME/IP 프로토콜을 Vector 사의 솔루션으로 최적화하여 제공 &rarr; 다양한 자동차 OEM과 협력하여 사용됨
+- vsomeip는 기기 간 SOME/IP communication 뿐만 아니라 내부 프로세스 간 communication도 포함함
+- 두 device는 사용된 전송 프로토콜(TCP Or UDP)과 해당 매개변수를 포트 번호로 결정하는 통신 Endpoints를 통해 통신함
+- 매개변수는 vsomeip 구성파일에 설정할 수 있음 (json 파일)
+- 내부 통신은 로컬 endpoint를 통해 이루어짐 &rarr; D-BUS 데몬과 같은 중앙 구성 요소를 통해 라우팅되지 않으므로 매우 빠름
+- 중앙 vsomeip 라우팅 관리자는 외부 디바이스로 전송해야 하는 경우에만 messages를 수신하고 외부에서 들어오는 msssages를 배포함
+- device당 라우팅 관리자는 하나만 존재함
+- vsomeip는 SOME/IP와 SOME/IP-SD 프로토콜만 관여하지 데이터 구조의 직렬화에는 관여하지 않음
+
