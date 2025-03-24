@@ -121,7 +121,7 @@
 - RPC call 중 client가 request를 보낸 후 server의 response를 기다리지 않는 경우 = ***Fire & Forget***
 
 #### Event
-![event](./imgevent.png)
+![event](./img/event.png)
 
 - 주기적으로 혹은 값의 변화가 있을 때에만 이루어지는 단방향 데이터 전송
 - server로부터 client에게로 진행되는 수동적인 데이터 전송
