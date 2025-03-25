@@ -618,13 +618,94 @@ print(match.groupdict())
 
 ---
 ### 14. 진법 변환
-```python
-print(bin(10))  # >>> '0b1010' (2진수)
-print(oct(10))  # >>> '0o12'  (8진수)
-print(hex(10))  # >>> '0xa'   (16진수)
+- ***n진수 &rarr; 10진수*** : **int(string, base) 내장 함수 지원**
 
+```python
 print(int('1010', 2))  # >>> 10
 print(int('A', 16))  # >>> 10
+```
+
+- ***int() 내장함수를 사용하지 않고 n진수를 10진수로 변환하는 방법***
+1. n진수의 순서를 반대로 만듦
+2. n의 제곱 차수를 늘려가며 곱함
+3. 누적함
+```python
+def convert(n, base):
+    decimal = 0
+    for index, value in enumerate(str(n)[::-1]):
+        decimal += (3**index)*int(value)
+    return decimal
+
+print(convert(21, 3))
+```
+
+- ***10진수 &rarr; 2,8,16 진수*** : **bin(), oct(), hex() 내장 함수 지원**
+```python
+print(bin(10))
+print(oct(10))
+print(hex(10))
+
+# Ob1010
+# Oo12
+# Oxa
+# Ob: 2진수, Oo: 8진수, Ox: 16진수
+
+# 앞의 진법 표시를 지우는 방법은 [2:]를 하면 가능
+print(bin(10)[2:])
+print(oct(10)[2:])
+print(hex(10)[2:])
+
+# 1010
+# 12
+# a
+```
+
+- ***10진수 &rarr; n진수*** (2진수-16진수)
+```python
+import string
+
+# temp = 0123456789abcdefghijklmnopqrstuvwxyz
+temp = string.digits+string.ascii_lowercase
+
+def convert(num, base):
+    q, r = divmod(num, base)
+    if q == 0:
+        return temp[r]
+    else:
+        return convert(q, base) + temp[r]
+
+print(convert(10, 2))
+print(convert(10, 2))
+print(convert(10, 2))
+print(convert(10, 2))
+
+# 1010
+# 101
+# 22
+# 20
+```
+
+- ***n진수 &rarrr; n진수***
+```python
+import string
+
+temp = string.digits+string.ascii_lowercase
+def convert(num, base):
+    q, r = divmod(num, base)
+    if q == 0:
+        return temp[r]
+    else:
+        return convert(q, base) + temp[r]
+
+print(convert(int('a', 16), 2))
+print(convert(int('4', 5), 3))
+print(convert(int('2', 3), 4))
+print(convert(int('11', 2), 5))
+
+# 1010
+# 11
+# 2
+# 3
 ```
 
 ---
