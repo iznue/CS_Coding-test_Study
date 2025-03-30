@@ -102,6 +102,11 @@ print(data) # >>> [1,4,5,8,9]
 #### 1.3 문자열 처리 함수
 - ***str.upper()*** : 대문자로 변환
 - ***str.lower()*** : 소문자로 변환
+
+- ***str.capitalize()*** : 문장의 첫 단어의 첫 글자만 대문자로 바꾸는 경우에 사용
+- ***str.title()*** : 문장의 모든 단어의 첫 글자를 대문자로 바꾸는 경우에 사용
+    - title은 문자열에서 알파벳 외의 문자 (숫자, 특수기호, 띄어쓰기 등)을 기준으로 첫글자를 대문자로 변경함
+
 - ***str.isupper() / str.islower()*** : 대문자/소문자인지 확인
 - ***str.swapcase()*** : 소문자는 대문자, 대문자는 소문자로 바꿈
 - ***str.capitalize()*** : 첫문자만 대문자로 변경하고 나머지 문자열은 모두 소문자로 변환
@@ -136,6 +141,15 @@ print(data) # >>> [1,4,5,8,9]
 text = "hello World"
 print(text.upper())        # >>> HELLO WORLD
 print(text.lower())        # >>> hello world
+
+text_s = "a1b2c3"
+print(text_s.capitalize())   #result : 'A1b2c3'
+print(text_s.title())        #result : 'A1B2C3'
+
+text_s2 = "abc-def gh"
+print(text_s2.capitalize())   #result : 'Abc-def gh'
+print(text_s2.title())        #result : 'Abc-Def Gh
+
 print(text.isupper())      # >>> False
 print(text.swapcase())     # >>> HELLO wORLD
 print(text.capitalize())   # >>> Hello world
