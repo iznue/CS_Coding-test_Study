@@ -48,7 +48,7 @@
 |3D UI 렌더링|OpenGL ES|Qt Quick, HUD 구현|
 |레거시 지원|X11|구형 리눅스 시스템 유지보수|
 
-[Graphic Rendering & Display System](./Graphic_Rendering_Display_System.md)
+[Graphic Rendering & Display System](./Graphic_rendering&Display/Graphic_Rendering_Display_System.md)
 
 ---
 ## OTA (Over the Air)
@@ -68,8 +68,8 @@
 >       3. 보안 부트로더 적용 : 비인가 접근 방어
 >       4. 접근 제어 시스템 강화 : 비인가 접근 방어
 
-[OTA_RAUC](./RAUC.md)
+[OTA_RAUC](./OTA/RAUC.md)
 
-[OTA detail _ secure](./OTA.md)
+[OTA detail _ secure](./OTA/OTA.md)
 
 ---

@@ -48,3 +48,11 @@
 - wayland는 결국 protocol / compositor를 구현하며 윈도우들을 여러 계층으로(레이어) 구분해 관리함
 - shell plugin(desktop-shell, xdg-shell...)을 지원하며 shell을 이용해 출력되는 각 윈도우(뷰)의 순서를 결정함
 - 윈도우를 화면에 나타나게 하거나 위치를 옮기거나 크기를 변경하는 기능을 지원함
+
+![weston](./img/weston.png)
+
+- weston compositor는 weston의 동작을 준비 / 실행하는 핵심 component임
+    - 1. wayland 객체, backend 컴포넌트, shell 컴포넌트를 생성 / 로딩 / 실행
+      2. 주요 wayland interface의 동작 (=컴포지팅) 정의
+- weston 컴포지터 코드는 compositor 폴더에서 찾을 수 있으며, **libweston** 폴더를 참조함
+
