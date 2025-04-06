@@ -1,5 +1,5 @@
 # Linux에서의 GUI Architecture
-![gui_operate](./img/gui_operate.png)
+![gui_operate](/contents/Embedded_System/img/gui_operate.png)
 
 > **동작 흐름**
 > 
@@ -73,7 +73,7 @@
 |X.Org Server|Weston, Kwin, GNOME Mutter 등|
 
 ### Wayland 동작 과정
-![wayland](./img/wayland.png)
+![wayland](/contents/Embedded_System/img/wayland.png)
 1. 커널은 이벤트(예: input event)를 가져와 컴포지터로 전달함
 2. 컴포지터는 어떤 윈도우가 이벤트를 수신해야하는지 결정함
 3. 클라이언트는 이벤트를 수신하면 클라이언트에서 렌더링이 발생함. 클라이언트가 컴포지터에게 업데이트된 영역을 표시하는 요청만 보냄
@@ -91,7 +91,7 @@
 - shell plugin(desktop-shell, xdg-shell...)을 지원하며 shell을 이용해 출력되는 각 윈도우(뷰)의 순서를 결정함
 - 윈도우를 화면에 나타나게 하거나 위치를 옮기거나 크기를 변경하는 기능을 지원함
 
-![weston](./img/weston.png)
+![weston](/contents/Embedded_System/img/weston.png)
 
 - weston compositor는 weston의 동작을 준비 / 실행하는 핵심 component임
     1. wayland 객체, backend 컴포넌트, shell 컴포넌트를 생성 / 로딩 / 실행

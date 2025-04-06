@@ -42,26 +42,26 @@
 ---
 ## Wayland 동작
 
-![wayland_operate](./img/wayland_operate.png)
+![wayland_operate](/contents/Embedded_System/img/wayland_operate.png)
 
 - wayland 프로토콜은 렌더링 API가 없음
 - 클라이언트가 스스로 렌더링 하기 위해서는 렌더링 라이브러리(Cairo, OpenGL)나 wayland가 지원하는 high-level widget 라이브러리를 사용해야함
 - 만약 클라이언트가 소프트웨어 렌더링을 사용하고 결과가 system 메모리에 저장되어 있다면, 버퍼 커뮤니케이션을 구현하기 위해 클라이언트와 컴포지터는 shared memory를 사용할 수 있음 (특별한 복사 없이)
 - 전형적인 방법은 클라이언트가 GPU API(OpenGL, OpenGL ES, Vulkan)를 사용해 비디오 메모리 버퍼에 직접 렌더링 하는 것임
 
-![opengl_app_operate](./img/opengl_app_operate.png)
+![opengl_app_operate](/contents/Embedded_System/img/opengl_app_operate.png)
 - DRM을 사용하는 리눅스 시스템에서 OpenGL을 사용하는 애플리케이션의 동작 방식
 - 기존 OpenGL 애플리케이션과 같이 Wayland 애플리케이션도 EGL을 이용해 direct rendering을 사용함
 
 ---
 #### Linux graphics system without wayland
-![linux_graphics_system_without_wayland](./img/linux_graphics_system_without_wayland.png)
+![linux_graphics_system_without_wayland](/contents/Embedded_System/img/linux_graphics_system_without_wayland.png)
 
 - wayland 없이 OpenGL과 DRM 드라이버를 사용하는 구조
 - 애플리케이션 스스로가 OpenGL과 커널 DRM interface를 이용해 최종 이미지를 원하는 영역에 출력해야함
 
 #### Linux graphics system with wayland
-![linux_graphics_system_with_wayland](./img/linux_graphics_system_with_wayland.png)
+![linux_graphics_system_with_wayland](/contents/Embedded_System/img/linux_graphics_system_with_wayland.png)
 
 - wayland를 이용해 OpenGL과 DRM 드라이버를 사용하는 구조
 - 윈도우 매니저 기능을 하는 wayland가 OpenGL 명령과 KMS 제어에 관여해 애플리케이션의 최종 이미지를 합성하거나 렌더링함
