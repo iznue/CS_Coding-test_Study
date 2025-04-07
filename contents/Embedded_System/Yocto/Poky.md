@@ -9,7 +9,7 @@
 - ***Poky를 참고해 내 타깃 시스템에 맞는 커스텀 리눅스를 빌드하도록 구성해야 함***
 - **meta layer**가 가장 핵심적인 역할을 함 = **OpenEmbedded-Core**
 
-![poky_architecture](./img/poky_architecture.png)
+![poky_architecture](/contents/Embedded_System/img/poky_architecture.png)
 
 ---
 ## Layer
@@ -34,9 +34,9 @@
 
 ⇒ OpenEmbedded Layer > OpenEmbedded-Core Layer
 
-![openembedded_build_system](./img/openembedded_build_system.png)
+![openembedded_build_system](/contents/Embedded_System/img/openembedded_build_system.png)
 
-![poky_inner](./img/poky_inner.png)
+![poky_inner](/contents/Embedded_System/img/poky_inner.png)
 
 > **meta** : 오픈임베디드 코어 레이어
 > 
@@ -77,7 +77,7 @@ $ bitbake-getvar -r core-image-minimal DL_DIR # DL_DIR이 어떤 변화를 거�
     - 사용 시 패키지 관리 시스템 사용
     - 최종 루트 파일 시스템 이미지는 커널, 부트로더 이미지와 함께 타깃 시스템에 프로그래밍 됨
 
-![steps_for_linux_build](./img/steps_for_linux_build.png)
+![steps_for_linux_build](/contents/Embedded_System/img/steps_for_linux_build.png)
 
-![steps_for_build_embedded_build_system](./img/steps_for_build_embedded_build_system.png)
+![steps_for_build_embedded_build_system](/contents/Embedded_System/img/steps_for_build_embedded_build_system.png)
 
