@@ -1,6 +1,6 @@
 # Embedded System
 - 특정한 기능을 수행하도록 설계된 **내장형 컴퓨팅 시스템**
-- 제품이 출시될 때 하드웨어 장치에 sw가 이미 내재되어 있음 &rarr; HW와 SW 중간에 있다는 의미로 **'Firmware'**라 함
+- 제품이 출시될 때 하드웨어 장치에 sw가 이미 내재되어 있음 &rarr; HW와 SW 중간에 있다는 의미로 ***Firmware***라 함
 - ***HW 환경을 고려한 개발 필수!*** 
 
 #### 임베디드 SW와 일반 응용 SW의 다른 점
@@ -22,17 +22,33 @@
      - meta-poky : Poky의 배포판에 해당하는 메타 데이터
      - meta-yocto-bsp : Yocto project가 지원하는 머신에 대한 bsp 포함
 
-[Yocto와 추상화 개념 / bitbake](./About_Yocto_bitbake.md)
+[Yocto와 추상화 개념 / bitbake](./Yocto/About_Yocto_bitbake.md)
 
-[Poky란 ?](./Poky.md)
+[Poky란 ?](./Yocto/Poky.md)
 
-[빌드 속도 개선을 위한 작업들](./Tasks_for_improve_build_speed.md)
+[빌드 속도 개선을 위한 작업들](./Yocto/Tasks_for_improve_build_speed.md)
 
-[레이어 & 레시피 생성](./Create_layer_recipe.md)
+[레이어 & 레시피 생성](./Yocto/Create_layer_recipe.md)
 
-[초기화 관리자 추가 및 로그 파일을 통한 디버깅](./Add_initial_manager_debugging_through_logfile.md)
+[초기화 관리자 추가 및 로그 파일을 통한 디버깅](./Yocto/Add_initial_manager_debugging_through_logfile.md)
 
-[유용한 오픈임베디드 코어 클래스 기능을 사용한 빌드 최적화](./Optimize_build_using_openembedded_core_class.md)
+[유용한 오픈임베디드 코어 클래스 기능을 사용한 빌드 최적화](./Yocto/Optimize_build_using_openembedded_core_class.md)
+
+---
+## Graphic Rendering & Display System
+- Embedded system에서 그래픽 렌더링 및 디스플레이 파이프라인 구성 시 핵심이 되는 기술 요소들
+- 리눅스 기반 임베디드 환경(ex : Raspberry Pi, NXP i.MX, NVIDIA Jetson 등)에서 많이 쓰임
+
+|사용 목적|사용 기술|설명|
+|---|---|---|
+|GUI 기반 디스플레이|Wayland / Weston|Qt / QML 앱 실행, GPU 가속 UI|
+|영상 디코딩 / 스트리밍|GStreamer + waylandsink|비디오 스트리밍 앱|
+|카메라 입력 처리|libcamera / v4l2src|USB / RPi 카메라 프레임 캡처|
+|저수준 디스플레이 제어|libdrm|Weston 없이 직접 렌더링|
+|3D UI 렌더링|OpenGL ES|Qt Quick, HUD 구현|
+|레거시 지원|X11|구형 리눅스 시스템 유지보수|
+
+[Graphic Rendering & Display System](./Graphic_rendering&Display/Graphic_Rendering_Display_System.md)
 
 ---
 ## OTA (Over the Air)
@@ -52,8 +68,8 @@
 >       3. 보안 부트로더 적용 : 비인가 접근 방어
 >       4. 접근 제어 시스템 강화 : 비인가 접근 방어
 
-[OTA_RAUC](./RAUC.md)
+[OTA_RAUC](./OTA/RAUC.md)
 
-[OTA detail _ secure](./OTA.md)
+[OTA detail _ secure](./OTA/OTA.md)
 
 ---
