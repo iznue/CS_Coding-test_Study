@@ -381,6 +381,13 @@ print(dict(counter)) # >>> {'red': 2, 'blue': 3, 'green': 1}
 
 ---
 ### 6. math
+- ***prod(x)*** : x의 모든 elements에 대해서 곱셈 연산
+```python
+import math
+arr = [1,2,3,4,5]
+print(math.prod(arr)) # >>> 120
+```
+
 - ***factorial(x)*** : x! 값 반환
 ```python
 import math
