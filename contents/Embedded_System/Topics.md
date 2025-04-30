@@ -22,7 +22,7 @@
      - meta-poky : Poky의 배포판에 해당하는 메타 데이터
      - meta-yocto-bsp : Yocto project가 지원하는 머신에 대한 bsp 포함
 
-[Yocto와 추상화 개념 / bitbake](./Yocto/About_Yocto_bitbake.md)
+[Yocto와 추상화 개념 / bitbake](./Yocto/Yocto/About_Yocto_bitbake.md)
 
 [Poky란 ?](./Yocto/Poky.md)
 

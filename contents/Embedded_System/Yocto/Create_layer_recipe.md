@@ -53,7 +53,7 @@
     - recipes-xxx : 레시피를 위한 작업 디렉토리
     - bbwarn : 로그 출력 함수
 
-![log_output](./img/log_output.png)
+![log_output](/contents/Embedded_System/img/log_output.png)
 
 3. **새로 추가한 레이어**[meta-hello]를 bblayer.conf의 **BBLAYES 변수에 추가**
     
@@ -146,7 +146,7 @@ $ bitbake <recipe-name> # 예제 상으로는 bitbake hello
     
     - DEPENDS : 레시피 파일 간의 의존성 설정 → hello2.bb 빌드 전 hello.bb가 우선 빌드 되어 함
 
-![namespace](./img/namespace.png)
+![namespace](/contents/Embedded_System/img/namespace.png)
 
 - 기존 빌드 결과물 삭제 & 재빌드
     
@@ -296,7 +296,7 @@ $ bitbake <recipe-name> # 예제 상으로는 bitbake hello
 
 ### 연산자의 적용 우선순위 (bitbake의 파싱 및 확장 시 발생하는 우선순위)
 
-![operation_priority](./img/operation_priority.png)
+![operation_priority](/contents/Embedded_System/img/operation_priority.png)
 
 - **_append, _prepend, _remove 연산자는 최종 사용 시점에 파싱됨**
 
@@ -323,7 +323,7 @@ $ bitbake <recipe-name> # 예제 상으로는 bitbake hello
     - D : 빌드 결과물로 생성된 바이너리가 위치하는 경로
     - bindi : 사전에 정의된 디렉토리 이름
 
-![dir_var](./img/dir_var.png)
+![dir_var](/contents/Embedded_System/img/dir_var.png)
 
 - install 태스크는 바이너리, 라이브러리, 헤더 파일, 문서들을 D 변수가 가리키는 경로에 복사함
 
@@ -339,7 +339,7 @@ $ bitbake <recipe-name> # 예제 상으로는 bitbake hello
 - **빌드한 애플리케이션 동작을 위해 애플리케이션 바이너리를 타깃의 루트 파일 시스템에 포함**
 - 각 태스크 실행 시 결과물을 저장하는 디렉토리
 
-![output_dir](./img/output_dir.png)
+![output_dir](/contents/Embedded_System/img/output_dir.png)
 
 ---
 ## 오픈소스 라이선스
@@ -394,9 +394,9 @@ $ bitbake <recipe-name> # 예제 상으로는 bitbake hello
     - 특정 레이어의 레시피 파일과 다른 레이어에 같은 이름을 가진 레시피 파일이 있는 경우 **우선순위에 따라 높은 레시피 파일의 내용이 반영됨 = 재정의 override**
 - 우선순위 : 레시피 확장 파일을 갖고 있는 레이어 > 원본 레시피 파일을 갖고 있는 레이어
 
-![bb_bbappend_relationship](./img/bb_bbappend_relationship.png)
+![bb_bbappend_relationship](/contents/Embedded_System/img/bb_bbappend_relationship.png)
 
-![layer_priority](./img/layer_priority.png)
+![layer_priority](/contents/Embedded_System/img/layer_priority.png)
 
 - 최종 루트파일 시스템에 설치될 패키지들의 목록 : **IMAGE_INSTALL 변수 + IMAGE_FEATURES 변수**에 나열된 패키지들을 합친 결과물
 - ~/poky_src/poky/meta-hello/conf/layer.conf의 **BBFILES** 변수에 core-image-minimal.bbappend **레시피 확장 파일의 경로를 추가함**
@@ -434,7 +434,7 @@ $ bitbake <recipe-name> # 예제 상으로는 bitbake hello
     - result_recipes에 작성한 값대로 명령에 따른 결과 추출됨
     - **여러 레이어에 사용된 메타데이터들을 단일 계층 디렉터리로 만듦 = 레이어 계층 평면화**
 
-![core_img_minimal](./img/core_img_minimal.png)
+![core_img_minimal](/contents/Embedded_System/img/core_img_minimal.png)
 
 ---
 ## BBFILE_COLLECTIONS, BBFILE_PATTERN 변수
@@ -442,7 +442,7 @@ $ bitbake <recipe-name> # 예제 상으로는 bitbake hello
 - **BBFILE_COLLECTIONS : 현재 레이어의 이름 할당**
 - **BBFILE_PATTERN : bitbake가 특정 레이어에 포함된 레시피 파일들을 검색하는데 사용되는 정규 표현식으로 레이어 최상위 디렉토리 이름 할당**
 
-![categorize_recipe_file](./img/categorize_recipe_file.png)
+![categorize_recipe_file](/contents/Embedded_System/img/categorize_recipe_file.png)
 
 - bitbake는 파싱 단계에서 각 레이어에 위치하는 레시피 및 레시피 확장 파일을 따로 모아둠
     - 각 레이어가 우선순위를 갖기 때문
@@ -453,5 +453,5 @@ $ bitbake <recipe-name> # 예제 상으로는 bitbake hello
 
 - Poky를 사용하는 경우의 bitbake 실행 과정
 
-![bitbake_parsing](./img/bitbake_parsing.png)
+![bitbake_parsing](/contents/Embedded_System/img/bitbake_parsing.png)
 

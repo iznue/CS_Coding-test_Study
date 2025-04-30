@@ -6,7 +6,7 @@
     
 ### ⇒ **로컬 소스 저장소(mirror) & Yocto의 Shared State Cache[캐시 저장소]를 구축해 빌드 시간을 획기적으로 줄이자 !**
 
-![openembedded_build_system_sorce_fetch_method](./img/openembedded_build_system_sorce_fetch_method.png)
+![openembedded_build_system_sorce_fetch_method](/contents/Embedded_System/img/openembedded_build_system_sorce_fetch_method.png)
 
 - 레시피 파일(.bb, .bbappend)은 **SRC_URI** 변수로 소스를 받아올 위치 정의
 - **bitbake.conf**의 **DL_DIR** 변수에 받아온 소스 저장됨 → **build/downloads : 기본**
@@ -22,7 +22,7 @@
         - 호스트가 아닌 **Yocto에서 배포하는 glibc 버전으로 컴파일 됨 ⇒ 호스트 환경에 따른 차이 X**
 - 소스 다운이 완료되면 **‘.done’**으로 생성됨 → 레시피에서 지정한 ‘S’ 변수가 가리키는 위치로 소스 복사
 
-![do_fetch_task](./img/do_fetch_task.png)
+![do_fetch_task](/contents/Embedded_System/img/do_fetch_task.png)
 - DL_DIR or Mirror에서 지정한 경로에서 소스 다운로드에 성공하면 S 변수 위치로 소스 다운로드
 - 깃에서 소스를 받은 경우, task **checkout** 발생
 
@@ -91,7 +91,7 @@
 --- 
 ## 2. Shared State Cache 생성 = 빌드 시간 단축 !
 
-![shared_state_cache](./img/shared_state_cache.png)
+![shared_state_cache](/contents/Embedded_System/img/shared_state_cache.png)
 
 - bitbake는 레시피의 **각 태스크 수행 시 signature 값을 생성**
     - **signature = checksum** : task code, 변수 등 입력 메타데이터로부터 생성
@@ -102,7 +102,7 @@
 - **setscene 태스크** : signature 값이 동일하다 = 공유 상태 캐시에 저장된 태스크의 결과를 그대로 사용해도됨
 - bitbake가 특정 레시피 빌드 전 공유상태캐시를 우선 확인한 후 재활용 가능하면 setscene 태스크를 실행
 
-![task_list](./img/task_list.png)
+![task_list](/contents/Embedded_System/img/task_list.png)
 
 - **build/sstate-cache** : 공유 상태 캐시가 저장되는 위치
 - **SSTATE_DIR** : sstate-cache 경로 지정 변수
@@ -176,5 +176,5 @@ export SSTATE_MIRRORS="file://.*file://${HOME}/data/sstate-cache/PATH"
 
 ⇒ 해당 방법은 .bashrc를 수정해야하므로 같은 호스트에서 다른 프로젝트 빌드 시 문제 발생 가능
 
-![important_dirs_included_build_dir](./img/important_dirs_included_build_dir.png)
+![important_dirs_included_build_dir](/contents/Embedded_System/img/important_dirs_included_build_dir.png)
 
