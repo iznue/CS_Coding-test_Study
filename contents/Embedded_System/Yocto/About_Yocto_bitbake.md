@@ -6,7 +6,7 @@
      - OpenEmbedded build system이 리눅스 소프트웨어 스택을 빌드하는데 필요한 정보를 제공하고, 제공된 **bitbake가 빌드 수행**
      - 소스 빌드에 필요한 cross compiler, library 등이 포함됨
 
-![structure_of_Poky](./img/structure_of_Poky.png)
+![structure_of_Poky](/contents/Embedded_System/img/structure_of_Poky.png)
 
 - meta directory
      - OpenEmbedded Core
@@ -25,7 +25,7 @@
 ### Metadata
 - **소프트웨어를 어떻게 빌드할지, 빌드하려는 소프트웨어들 간에 어떤 의존성이 있는지 기술함**
 
-![types_of_metadata](./img/types_of_metadata.png)
+![types_of_metadata](/contents/Embedded_System/img/types_of_metadata.png)
 &rarr; 다섯 종류의 파일에서 사용됨 : **메타 데이터 파일**
 
 > **1. 변수**
@@ -63,7 +63,7 @@
 ### Bitbake 실행
 - **bitbake/bin**의 절대 경로를 PATH 환경 변수에 추가 → bitbake 파일이 모든 경로에서 실행 가능하도록
 
-![steps_for_execute_bitbake](./img/steps_for_execute_bitbake.png)
+![steps_for_execute_bitbake](/contents/Embedded_System/img/steps_for_execute_bitbake.png)
 
 > 1. **BBPATH 설정 및 bblayers.conf 파일 탐색**
 >     - bitbake가 특정 디렉토리의 metadata를 인식하게 함
@@ -125,9 +125,9 @@
     - **T** : 태스크 실행 로그, 스크립트 파일 등 임시 파일 저장 디렉토리
     - **B** : 레시피 빌드 과정에서 함수를 실행하는 디렉토리 / 빌드 과정에서의 임시 파일들 & 빌드 결과물 등 저장
 
-![steps_for_execute_bitbake2](./img/steps_for_execute_bitbake2.png)
+![steps_for_execute_bitbake2](/contents/Embedded_System/img/steps_for_execute_bitbake2.png)
 
-![openembedded_architecture_workflow](./img/openembedded_architecture_workflow.png)
+![openembedded_architecture_workflow](/contents/Embedded_System/img/openembedded_architecture_workflow.png)
 
-![steps_for_analyze_bitbake](./img/steps_for_analyze_bitbake.png)
+![steps_for_analyze_bitbake](/contents/Embedded_System/img/steps_for_analyze_bitbake.png)
 
