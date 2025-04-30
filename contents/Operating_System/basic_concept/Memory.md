@@ -1,6 +1,19 @@
 # Memory
+- RAM(Random access memory)의 다른 표현, CPU가 처리할 데이터나 명령어들을 임시로 저장하는 작업 공간 역할
+- 프로그램 실행을 위해 먼저 프로그램이 메모리에 로드되어야 함
+- 프로그램을 실행하게 되면 **OS는 메모리에 공간을 할당함**
 
-![memory_structure](./img/memory_structure2.png)
+### 메모리 구조 
+![memory_structure](/contents/Operating_System/img/memory_structure.png)
+
+- Code : 실행할 프로그램의 코드
+- Data : 전역 변수, 정적 변수
+- Heap : 런타임 시 크기가 결정됨 (사용자의 동적 할당)
+- Stack : 컴파일 타임에 크기가 결정됨
+    - Compile time : 작성한 소스코드가 기계가 읽을 수 있는 형태로 변환되는 과정
+    - Run time : 컴파일 과정을 마친 컴퓨터 프로그램이 실행되고 있는 환경 또는 동작 시간
+
+![memory_structure](/contents/Operating_System/img/memory_structure2.png)
 ### Code 영역
 - 작성한 **소스코드가 저장**되는 영역 = 텍스트 영역
 - 기계여 형태 (0,1)로 저장
@@ -53,7 +66,7 @@ void free (void *ptr);
        - 예: 변수 a를 먼저 스택에 할당한 후 b 할당, 그 이후 a를 강제로 해제해야하는 경우 제거 불가능
 ---
 ## 메모리 계층 구조
-![memory_hierarchy](./img/memory_hierarchy.png)
+![memory_hierarchy](/contents/Operating_System/img/memory_hierarchy.png)
 
 - 여러 기억장치를 필요에 따라 속도, 용량, 성능에 따라 계층적으로 구분
 - **하위 계층**일수록 용량이 늘어나고 가격이 저렴하지만 속도가 느림 / **상위 계층**은 빠른 대신 용량이 작고 가격이 비쌈

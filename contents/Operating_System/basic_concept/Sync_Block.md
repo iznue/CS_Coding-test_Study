@@ -1,6 +1,11 @@
-# Synchronous & Asynchronous
+# Synchronous & Asynchronous VS Block & Non-Block
+- ***Sync & Async : 요청 작업에 대한 완료 여부를 확인해 작업을 순차적으로 수행할지 아닌지에 따라 결정되는 개념***
+    - **호출되는 함수의 완료**를 호출한 쪽에서 신경을 쓰냐 호출 받은 쪽에서 신경을 쓰냐의 차이
 
-![sync_async](./img/sync_async.png)
+- ***Block & Non-Block : 현재 진행중인 작업이 블락(대기)되느냐 안 되는냐에 따라 다른 작업을 수행할지가 결정되는 개념***
+    - blocking은 호출받은 쪽이 호출한 쪽에 제어권을 넘겨주지 않음 / non-blocking은 다시 제어권을 넘겨줌
+
+![sync_async](/contents/Operating_System/img/sync_async.png)
 
 &rarr; **호출되는 함수의 작업 완료를 신경쓰는지의 여부 차이**
 
@@ -18,7 +23,7 @@
 ---
 # Blocking & Non-Blocking
 
-![block_nonblock](./img/block_nonblock.png)
+![block_nonblock](/contents/Operating_System/img/block_nonblock.png)
 
 &rarr; **제어권을 어떻게 처리하는지에 대한 차이**
 
@@ -33,7 +38,7 @@
 ---
 ## Sync + Blocking 
 
-![sync_block_combine](./img/sync_block_combine.png)
+![sync_block_combine](/contents/Operating_System/img/sync_block_combine.png)
 
 #### Non-Blocking & Sync
 - 다른 작업이 진행되는 동안에도 **자신의 작업을 처리하고**, 다른 작업의 결과를 바로 처리하여 작업을 **순차대로 수행하는 방식**
