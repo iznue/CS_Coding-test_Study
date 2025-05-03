@@ -29,10 +29,13 @@
 
 [Scheduler - Process & CPU](./manage_process/Scheduling_CPU.md)
 
+[Race Condition](./manage_process/Race_condition.md)
+
 [Critical Section - process synchronization](./manage_process/Critical_section.md)
 
 [Mutual Exclusion](./manage_process/Spinlock_Mutex_Semaphore.md)
 
+[Dead Lock](./manage_process/Dead_lock.md)
 
 ---
 ## Manage Memory
