@@ -39,6 +39,11 @@
 
 ---
 ## Manage Memory
+[Memory Management](./manage_memory/Memory_management.md)
+
+[Virtual Memory / Swapping / Paging / Segmentation](./manage_memory/Memory_management_methods.md)
+
+[Memory allocation & Process Creation - fork()](./manage_memory/Fork.md)
 
 ---
 ## File & I/O System
