@@ -144,6 +144,7 @@ int main() {
 - `atoi(str.c_str())` : 문자열로 입력된 숫자를 int로 변경 가능 (문자열인 경우 0 반환)
     - char 타입에는 적용 불가 : atoi(s[0].c_str())과 같이 사용 불가능
     - 예) str = "1D2T" &rarr; 1,2를 int로 변환하고 싶으면 : **atoi(str.substr(0,1).c_str())**
+- `to_string(value_type)` : 다른 형을 string으로 변환 &rarr; 변환 후 아스키코드 값일 때 '0' 뺴주기
 
 <details>
 <summary>문자열 선언 및 초기화</summary>
@@ -709,7 +710,7 @@ int main() {
 - `front()` : 첫번째 원소 / `back()` : 마지막 원소 / `begin()` : 첫번째 위치 / `end()` : 마지막의 다음 위치
 - `push_back()` : 마지막에 데이터 추가 / `pop_back()` : 마지막에서 데이터 뽑기 / `size()` : 원소 개수 / `clear()` : 비우기
 - 벡터에 pair도 들어갈 수 있음 !
-- `accumulate(v.begin(), v.end(), 0)` : 특정 배열 값들의 합 구하기 &rarr; 시작값을 반드시 넣어야 함
+- `accumulate(v.begin(), v.end(), 0)` : 특정 배열 값들의 합 구하기 &rarr; 시작값을 반드시 넣어야 함 : `#include <numeric>`
 
 <details>
 <summary>1차원 벡터의 선언 및 초기화</summary>
@@ -864,7 +865,7 @@ set<int> s3(s2); // 다른 셋을 사용한 초기화
 using namespace std;
 
 int main() {
-  set<int> numbers = {1,2,3,4,5}'
+  set<int> numbers = {1,2,3,4,5}
   int targets[] = {3,7};
   for (int target : targets) {
     auto it = numbers.find(target);
@@ -1718,6 +1719,35 @@ int a2[10][10];
 
 memset(a, -1, sizeof(a));
 memset(a2, 0, sizeof(a2));
+```
+
+</details>
+
+<details>
+<summary>math : 제곱근, n승, hypot</summary>
+
+- #include <math.h> 또는 #include <cmath>
+
+```c++
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+	int a = 3, n = 4, b = 144;
+
+	cout << a << "의 " << n << "승 = " << pow(a, n) << "\n";
+  // pow : double 형 - a의 n 제곱값
+
+	cout << b << "의 " << "양의 제곱근 = " << sqrt(b) << "\n";
+  // sqrt : double 형 - 인수로 준 값의 양의 제곱근
+
+  cout << "3의 제곱 + 4의 제곱 = " << hypot(3, 4) << "\n";
+  // hypot : 두 수를 각각 제곱한 후 더한 값의 제곱근
+
+	return 0;
+}
 ```
 
 </details>
