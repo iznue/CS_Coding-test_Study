@@ -386,6 +386,49 @@ int main() {
 
 </details>
 
+<details>
+<summary>문자열 변환</summary>
+
+```c++
+#include <iostream>
+#include <string>
+
+int main()
+{
+    std::string str_dec = "2001, A Space Odyssey";
+    std::string str_hex = "40c3";
+    std::string str_bin = "-10010110001";
+    std::string str_auto = "0x7f";
+    std::string str_auto2 = "077";
+    std::string str_auto3 = "77.5";
+
+    int i_dec = std::stoi(str_dec); //string의 앞쪽 정수만 int형으로 변환
+    int i_hex = std::stoi(str_hex, nullptr, 16); //string 16진수를 10진수로
+    int i_bin = std::stoi(str_bin, nullptr, 2);//string 2진수를 10진수로
+    int i_auto = std::stoi(str_auto, nullptr, 0);//알아서 변환 string 16진수를 10진수로
+    int i_auto2 = std::stoi(str_auto2, nullptr, 0);//string 8진수를 10진수로
+    int i_auto3 = std::stoi(str_auto3, nullptr, 0);//string 10진수를 10진수로
+
+    std::cout << str_dec << ": " << i_dec << "\n"; // 2001, A Space Odyssey: 2001
+    std::cout << str_hex << ": " << i_hex << '\n'; // 40c3: 16579
+    std::cout << str_bin << ": " << i_bin << '\n'; // -10010110001: -1201
+    std::cout << str_auto << ": " << i_auto << '\n'; // 0x7f: 127
+    std::cout << str_auto2 << ": " << i_auto2 << '\n'; // 077: 63
+    std::cout << str_auto3 << ": " << i_auto3 << '\n'; // 77.5: 77
+
+    return 0;
+}
+```
+- `stoi` : string &rarr; int
+- `stoul` : string &rarr; unsigned long
+- `stoull` : string &rarr; unsigned long long
+- `stoll` : string &rarr; long long
+- `stof` : string &rarr; float
+- `stod` : string &rarr; double
+- `stold` : string &rarr; long double
+
+</details>
+
 ### 1.4 변수형 변환
 
 <details>
@@ -1726,8 +1769,6 @@ memset(a2, 0, sizeof(a2));
 <details>
 <summary>math : 제곱근, n승, hypot</summary>
 
-- #include <math.h> 또는 #include <cmath>
-
 ```c++
 #include <iostream>
 #include <cmath>
@@ -1735,18 +1776,181 @@ memset(a2, 0, sizeof(a2));
 using namespace std;
 
 int main() {
-	int a = 3, n = 4, b = 144;
+  int a = 3, n = 4, b = 144;
 
-	cout << a << "의 " << n << "승 = " << pow(a, n) << "\n";
+  cout << a << "의 " << n << "승 = " << pow(a, n) << "\n";
   // pow : double 형 - a의 n 제곱값
 
-	cout << b << "의 " << "양의 제곱근 = " << sqrt(b) << "\n";
+  cout << b << "의 " << "양의 제곱근 = " << sqrt(b) << "\n";
   // sqrt : double 형 - 인수로 준 값의 양의 제곱근
 
   cout << "3의 제곱 + 4의 제곱 = " << hypot(3, 4) << "\n";
   // hypot : 두 수를 각각 제곱한 후 더한 값의 제곱근
 
-	return 0;
+  return 0;
+}
+```
+- #include <math.h> 또는 #include <cmath>
+
+</details>
+
+<details>
+<summary>자료형 확인</summary>
+
+```c++
+#include "stdafx.h"
+#include <iostream>
+#include <typeinfo>
+
+using namespace std;
+
+void func1()
+{
+  int i = 0;
+  cout << "wow" << endl;
+}
+
+int main()
+{
+  void* v;
+  int   i;
+  long  l;
+  double d;
+  float  f;
+
+  cout << typeid(v).name() << endl;
+  cout << typeid(i).name() << endl;
+  cout << typeid(l).name() << endl;
+  cout << typeid(d).name() << endl;
+  cout << typeid(f).name() << endl;
+
+  cout << typeid(func1()).name() << endl; // void
+
+  return 0;
+}
+```
+- #include <typeinfo>
+- STL에서 제공하는 `typeid()` 사용하면 자료형 확인 가능
+- 함수의 return형도 알 수 있음
+
+</details>
+
+<details>
+<summary>삼항연산자</summary>
+
+```c++
+int a = 10;
+int b = 20;
+int result = 0;
+result = (a < b) ? a : b;
+
+// if-else문 표현
+if (a < b)
+{
+  result = a;
+} else {
+  result = b;
+}
+```
+- 삼항연산자로 간단한 if-else 문 대체 가능
+- true면 앞, false면 뒤 조건 실행
+
+</details>
+
+<details>
+<summary>switch</summary>
+
+```c++
+int data = 0;
+
+switch (data)
+{
+case 0:
+  data = 100;
+  break;
+case 10:
+  data = 10;
+  break;
+default:
+  data = 1;
+  break;
+}
+```
+- data 값이 case랑 같은 경우 그 안의 코드 실행
+- 해당되는 조건이 없으면 default 실행
+
+</details>
+
+<details>
+<summary>비트 연산자</summary>
+
+```c++
+#include <iostream>
+#include <bitset>
+using namespace std;
+
+int main() {
+    int a = 10;  // 1010
+    int b = 20;  // 10100
+
+    cout << "a = " << a << " (" << bitset<8>(a) << ")\n"; // a = 10 (00001010)
+    cout << "b = " << b << " (" << bitset<8>(b) << ")\n"; //b = 20 (00010100)
+
+    cout << "a & b (AND)   = " << (a & b) << " (" << bitset<8>(a & b) << ")\n"; // a & b (AND)   = 0  (00000000)
+    cout << "a | b (OR)    = " << (a | b) << " (" << bitset<8>(a | b) << ")\n"; // a | b (OR)    = 30 (00011110)
+    cout << "a ^ b (XOR)   = " << (a ^ b) << " (" << bitset<8>(a ^ b) << ")\n"; // a ^ b (XOR)   = 30 (00011110)
+    cout << "~a (NOT a)    = " << (~a) << " (" << bitset<8>(~a) << ")\n"; // ~a (NOT a)    = -11 (11110101)
+}
+```
+- 정수의 이진수 단위로 계산
+
+|연산자|이름|설명|
+|---|---|---|
+|&|AND|둘 다 1일 때만 1|
+|||OR|둘 중 하나만 1이어도 1|
+|^|XOR|다르면 1, 같으면 0|
+|~|NOT|1은 0으로, 0은 1로|
+|<<|왼쪽 시프트|왼쪽으로 밀고 0을 채움 (곱하기 2)|
+|>>|오른쪽 시프트|오른쪽으로 밀고 앞쪽 비트를 채움 (나누기 2)|
+
+</details>
+
+<details>
+<summary>비트 시프트 연산</summary>
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 5;  // 0101
+
+    cout << "x << 1 (왼쪽 시프트) = " << (x << 1) << endl; // 10
+    cout << "x >> 1 (오른쪽 시프트) = " << (x >> 1) << endl; // 2
+}
+```
+- x << 1 : x에 2를 곱한 결과
+- x >> 1 : x를 2로 나눈 결과
+
+</details>
+
+<details>
+<summary>진수 표현</summary>
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+    int bin = 0b1010;  // 2진수 (C++14 이상)
+    int oct = 012;     // 8진수
+    int dec = 10;      // 10진수
+    int hex = 0xA;     // 16진수
+
+    cout << "bin: " << bin << endl;  // 10
+    cout << "oct: " << oct << endl;  // 10
+    cout << "dec: " << dec << endl;  // 10
+    cout << "hex: " << hex << endl;  // 10
 }
 ```
 
