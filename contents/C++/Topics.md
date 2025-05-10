@@ -1622,6 +1622,189 @@ int main() {
 
 </details>
 
+#### 2.4.7 Transform
+
+<details>
+<summary>transform()</summary>
+
+- 정수형 벡터 요소에 더하기
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+  vector<int> v = {1, 2, 3, 4, 5};
+  vector<inf> to;
+  to.resize(5);
+
+  transform(v.begin(), v.end(), to.begin(), [](int n) {return n + 1;});
+  return 0;
+}
+// 2 3 4 5 6
+```
+
+- 문자열의 각 문자를 대문자로 변환
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cctype>
+
+using namespace std;
+
+int main() {
+  string lower = "orange";
+  transform(lower.begin(), lower.end(), lower.begin(), ::toupper);
+  return 0;
+}
+// ORANGE
+```
+
+- 두 개의 정수형 벡터 요소 더하기
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+  vector<int> a = {1,2,3,4,5};
+  vector<int> b = {10,20,30,40,50};
+  transform(a.begin(), a.end(), b.begin(), a.begin(), plus<int>());
+  return 0;
+}
+// 11 22 33 44 55
+```
+
+- 단항 함수형 & 이항 함수형 : operation 함수의 파라미터에 따라
+    - 단항 함수형 : first1부터 last1 전까지 범위의 원소들을 unary_op(원소들을 변환할 함수)를 수행하고, 그 결과를 d_first(결과를 저장할 범위 : first1인 경우 기존 데이터 덮어씀)부터 차례로 저장
+    - 이항 함수형 : first1부터 last1 전까지 범위의 원소들과 first2부터 동일 갯수의 원소들로 binary_op를 수행하고, 그 결과를 d_first부터 차례로 저장
+- 원소를 수정하며, 함수의 리턴값으로 해당 원소가 바뀜
+
+</details>
+
+#### 2.4.8 Copy
+
+<details>
+<summary>copy()</summary>
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+  vector<int> v = {10, 40, 70};
+  vector<int> to_v;
+  to_v.resize(v.size());
+  copy(v.begin(), v.end(), to_v.begin());
+  // 10 40 70
+  return 0;
+}
+```
+
+</details>
+
+#### 2.4.9 Swap
+
+<details>
+<summary>swap(), swap_range()</summary>
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+  int x = 10;
+  int y = 20;
+
+  vector<int> v1(4, x);
+  vector<int> v2(6, y);
+  swap(x, y); // 20 10
+  swap(v1, v2); // v1.size() : 6, v2.size() : 4
+  return 0;
+}
+```
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+  int a[5] = {1,2,3,4,5};
+  int b[5] = {6,7,8,9,10};
+
+  swap_ranges(a, a+3, b);
+  // a : 6 7 8 4 5
+  // b : 1 2 3 9 10
+  return 0;
+}
+```
+- swap은 해당 변수에 있는 값들을 서로 바꿔줌
+- swap_ranges는 특정 범위의 값들을 다른 연속된 메모리 공간의 값들과 바꿔줌
+
+</details>
+
+#### 2.4.10 for_each
+
+<details>
+<summary>for_each()</summary>
+
+```c++
+#include <algorithm>  // std::for_each
+#include <iostream>   // std::cout
+#include <vector>     // std::vector
+
+void myfunction(int i) {  // function:
+  std::cout << ' ' << i;
+}
+
+struct myclass {  // function object type:
+  void operator()(int i) { std::cout << ' ' << i; }
+} myobject;
+
+int main() {
+  std::vector<int> myvector;
+  myvector.push_back(10);
+  myvector.push_back(20);
+  myvector.push_back(30);
+
+  // 일반적인 함수 포인터 전달
+  std::cout << "myvector contains:";
+  for_each(myvector.begin(), myvector.end(), myfunction);
+  std::cout << '\n'; // 10 20 30 
+
+  // Functor 를 전달
+  std::cout << "myvector contains:";
+  for_each(myvector.begin(), myvector.end(), myobject);
+  std::cout << '\n'; // 10 20 30 
+
+  // 람다 함수를 전달
+  std::cout << "myvector contains:";
+  for_each(myvector.begin(), myvector.end(),
+           [](const int& n) { std::cout << ' ' << n; });
+  std::cout << '\n'; // 10 20 30 
+
+  return 0;
+}
+```
+- for_each(시작 주소값, 끝 주소값, 함수)
+- 반환 가능
+
+</details>
+
 ---
 ## 3. 함수
 
