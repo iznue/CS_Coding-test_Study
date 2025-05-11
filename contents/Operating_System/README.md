@@ -1,24 +1,53 @@
 # Operating System
 
-## 📝 Topics
+- user가 사용하는 **application과 hardware 사이**에서 동작하는 소프트웨어 계층
+- 응용프로그램이 요청하는 **시스템 리소스를 효율적으로 분배하고, 지원하는 소프트웨어**
 
-- [Memory](Topics.md#memory)
+![operating_system_overview](./img/operating_system_overview.png)
 
-- [Process & Thread](Topics.md#process-vs-thread)
+---
+# 📝 Topics
 
-- [PCB](Topics.md#process-control-block-pcb)
+## Basic Concept of OS
+[Operating System](./basic_concept/Operating_system.md)
 
-- [Context-Switching](Topics.md#context-switching)
+[Memory](./basic_concept/Memory.md)
 
-- [Multi Process VS Multi Thread](Topics.md#multi-process-vs-multi-thread)
+[Process VS Thread](./basic_concept/Process_Thread.md)
 
-- [Critical Section](Topics.md#critical-section-임계영역)
+[Kernel-level Thread VS User-level Thread](./basic_concept/Kernel_User-level_Thread.md)
 
-- [프로세스 동기화 메커니즘 : Spinlock & Mutex & Semaphore](Topics.md#프로세스-동기화-메커니즘--spinlock--mutex--semaphore)
+[Synchronous VS Asynchronous](./basic_concept/Sync_Block.md)
 
-- [Process Scheduling](Topics.md#process-scheduling)
+[System Call](./basic_concept/System_call.md)
 
-- [CPU Scheduling](Topics.md#cpu-scheduling)
+---
+## Manage Process
+[PCB & Context Switching](./manage_process/PCB_ContextSwitching.md)
 
-- [Synchronous & Asynchronous VS Block & Non-Block](Topics.md#synchronous--asynchronous-vs-block--non-block)
+[MultiProcess VS MultiThread](./manage_process/MultiProcess_MultiThread.md)
+
+[Scheduler - Process & CPU](./manage_process/Scheduling_CPU.md)
+
+[Race Condition](./manage_process/Race_condition.md)
+
+[Critical Section - process synchronization](./manage_process/Critical_section.md)
+
+[Mutual Exclusion](./manage_process/Spinlock_Mutex_Semaphore.md)
+
+[Dead Lock](./manage_process/Dead_lock.md)
+
+---
+## Manage Memory
+[Memory Management](./manage_memory/Memory_management.md)
+
+[Virtual Memory / Swapping / Paging / Segmentation](./manage_memory/Memory_management_methods.md)
+
+[Memory allocation & Process Creation - fork()](./manage_memory/Fork.md)
+
+---
+## File & I/O System
+
+---
+## Real Time OS & Embedded System
 

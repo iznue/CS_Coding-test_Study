@@ -2,7 +2,7 @@
 - OS는 좁은 의미에서 Kernel을 의미하며, 여기에 여러 가지 추가된 것이 운영체제임
 - 운영체제와 유사하지만 소프트웨어를 추가로 설치할 수 없는 것 : Fireware
 
-![operating_system](./img/operating_system.png) 
+![operating_system](/contents/Operating_System/img/operating_system.png) 
 
 > ### 운영 체제의 역할
 > 1. 메모리 관리 : 한정된 메모리를 어떤 프로세스에 얼마나 할당해야 하는가
@@ -46,7 +46,7 @@
 
 **User Mode, Kernel Mode는 system call을 통해 전환됨**
 
-![operating_system2](./img/operating_system2.jpg)
+![operating_system2](/contents/Operating_System/img/operating_system2.jpg)
   
 ---
 ## API (Application Programming Interface)
