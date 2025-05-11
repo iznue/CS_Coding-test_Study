@@ -2,7 +2,7 @@
 
 ---
 ## Spinlock
-![spinlock](./img/spinlock.png)
+![spinlock](/contents/Operating_System/img/spinlock.png)
 
 - Thread0이 스핀락을 얻고 critical section에 진입해 공유 자원에 접근하게 되면 스핀락을 얻지 못한 Thread1은 대기하는 동안 락을 얻을 수 있는지 확인하는 작업을 무한반복함
 - 무한반복 중 Thread0이 critical section을 나와 스핀락을 반환하면, Thread1이 스핀락을 얻고 critical section으로 들어감
@@ -46,8 +46,8 @@ void critical(){
 
 ---
 ## Mutex
-![mutex](./img/mutex.png)
-![mutex_](./img/mutex_.jpg)
+![mutex](/contents/Operating_System/img/mutex.png)
+![mutex_](/contents/Operating_System/img/mutex_.jpg)
 
 - 하나의 스레드가 락을 얻어 critical section에 진입했다면, 락을 취득하지 못한 다른 스레드는 락을 가질 수 있을 때까지 휴식
 - 한번에 하나의 스레드만 임계 영역에 진입할 수 있음
@@ -99,8 +99,8 @@ mutex->unlock();
 
 ---
 ## Semaphore
-![semaphore](./img/semaphore.png)
-![semaphore_](./img/semaphore_.jpg)
+![semaphore](/contents/Operating_System/img/semaphore.png)
+![semaphore_](/contents/Operating_System/img/semaphore_.jpg)
 
 - signal mechanism을 가진 하나 이상의 스레드가 critical section에 접근 가능하도록 함
 - spinlock. mutex가 critical section에 진입할 수 있는 스레드 개수는 1로 고정되어 있지만. semaphore는 동시에 진입한 스레드의 개수를 1이상으로도 설정할 수 있음
