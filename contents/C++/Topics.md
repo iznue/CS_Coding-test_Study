@@ -1805,6 +1805,37 @@ int main() {
 
 </details>
 
+#### 2.4.11 Unique
+
+<details>
+<summary>unique()</summary>
+
+```c++
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+  vector<int> v = {2,3,5,2,3,5,4};
+  sort(v.begin(), v.end());
+  v.erase(unique(v.begin(), v.end()), v.end());
+
+  for(auto x : v){
+    cout << x << ' ';
+  }
+  // 2 3 4 5
+  return 0;
+} 
+```
+- #include <algorithm> 추가해서 사용
+- **나란히 있는** 중복된 값을 제거하는 함수 : 정렬 후 사용 권장
+- 중복된 원소들을 제거하고 제거된 숫자만큼 벡터를 쓰레기 값으로 채움
+- 중복 제거된 원소들 **다음 값**을 가리키는 iterator를 반환함
+
+</details>
+
 ---
 ## 3. 함수
 
@@ -2134,6 +2165,252 @@ int main() {
     cout << "oct: " << oct << endl;  // 10
     cout << "dec: " << dec << endl;  // 10
     cout << "hex: " << hex << endl;  // 10
+}
+```
+
+</details>
+
+<details>
+<summary>순열, 조합 - 재귀함수</summary>
+
+### 1. 순열
+
+```c++
+#include <iostream>
+using namespace std;
+
+#define n 4  // 전체 원소의 개수
+#define r 3  // 순열로 뽑을 원소의 개수
+
+int parr[r] = {0, };  // 순열을 저장할 배열
+bool check[n+1] = {false, };  // 원소가 선택되었는지 여부를 확인하는 배열
+
+void printArray(int arr[r]) {
+    for (int i = 0; i < r; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+void permutation(int depth) {
+    if (depth == r) {
+        printArray(parr);  // 순열을 다 채우면 출력
+        return;
+    }
+
+    for (int i = 1; i <= n; i++) {
+        if (!check[i]) {  // 아직 선택되지 않은 원소라면
+            check[i] = true;
+            parr[depth] = i;  // 순열 배열에 원소를 배치
+            permutation(depth + 1);  // 다음 깊이로 재귀 호출
+            check[i] = false;  // 다시 원래 상태로 복귀
+        }
+    }
+}
+
+int main(void) {
+    permutation(0);  // 초기 깊이 0에서 시작
+    return 0;
+}
+
+```
+- 순열 : 순서를 따지고, 중복을 허용하지 않음
+- 중복을 검사하기 위한 check 배열을 사용
+- depth를 하나씩 늘려가며, 배열에 하나씩 채우는 방법으로 재귀 수행
+
+### 2. 중복 순열
+```c++
+#include <iostream>
+using namespace std;
+
+#define n 3  // 전체 원소의 개수
+#define r 3  // 중복 순열로 뽑을 원소의 개수
+
+int parr[r] = {0, };  // 순열을 저장할 배열
+
+void printArray(int arr[r]) {
+    for (int i = 0; i < r; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+void permutationWithRepetition(int depth) {
+    if (depth == r) {
+        printArray(parr);  // 중복 순열을 다 채우면 출력
+        return;
+    }
+
+    for (int i = 1; i <= n; i++) {
+        parr[depth] = i;  // 순열 배열에 원소를 배치
+        permutationWithRepetition(depth + 1);  // 다음 깊이로 재귀 호출
+    }
+}
+
+int main(void) {
+    permutationWithRepetition(0);  // 초기 깊이 0에서 시작
+    return 0;
+}
+
+```
+- 중복 순열 : 원소를 중복해 사용할 수 있으므로 재귀 호출에서 각 깊이에 대해 가능한 모든 값을 선택
+- check 배열이 필요 없음
+
+### 3. 조합
+
+```c++
+#include <iostream>
+using namespace std;
+
+#define n 4  // 전체 원소의 개수
+#define r 3  // 조합으로 뽑을 원소의 개수
+
+int parr[r] = {0, };  // 조합을 저장할 배열
+
+void printArray(int arr[r]) {
+    for (int i = 0; i < r; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+void combination(int depth, int start) {
+    if (depth == r) {
+        printArray(parr);  // 조합을 다 채우면 출력
+        return;
+    }
+
+    for (int i = start; i <= n; i++) {
+        parr[depth] = i;  // 조합 배열에 원소를 배치
+        combination(depth + 1, i + 1);  // 다음 깊이로 재귀 호출, i+1로 시작해 중복 선택 방지
+    }
+}
+
+int main(void) {
+    combination(0, 1);  // 초기 깊이 0에서 시작, 1번부터 시작
+    return 0;
+}
+
+```
+- 조합 : 순서에 관계없이 원소 선택, 중복된 원소는 허용되지 않음
+- depth와 start를 이용해 원소 선택
+- depth는 현재 조합에 몇 개의 원소를 넣었는지, start는 이전에 선택된 원소 이후부터 선택을 시작하도록
+
+### 4. 중복 조합
+
+```c++
+#include <iostream>
+using namespace std;
+
+#define n 3  // 전체 원소의 개수
+#define r 3  // 중복 조합으로 뽑을 원소의 개수
+
+int parr[r] = {0, };  // 조합을 저장할 배열
+
+void printArray(int arr[r]) {
+    for (int i = 0; i < r; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+void combinationWithRepetition(int depth, int start) {
+    if (depth == r) {
+        printArray(parr);  // 중복 조합을 다 채우면 출력
+        return;
+    }
+
+    for (int i = start; i <= n; i++) {
+        parr[depth] = i;  // 조합 배열에 원소를 배치
+        combinationWithRepetition(depth + 1, i);  // 중복 가능하므로 i를 그대로 두고 재귀 호출
+    }
+}
+
+int main(void) {
+    combinationWithRepetition(0, 1);  // 초기 깊이 0에서 시작, 1번부터 시작
+    return 0;
+}
+
+```
+- 중복 조합 : 같은 원소를 여러 번 선택할 수 있는 조합
+- start 값을 그대로 두고 재귀 호출을 하면서, 같은 원소를 중복해서 사용할 수 있음
+
+</details>
+
+<details>
+<summary>순열, 조합 - STL 함수</summary>
+
+### 1. 순열
+```c++
+#include <iostream>
+#include <algorithm>  // for next_permutation
+#include <vector>
+using namespace std;
+
+int main(void) {
+    vector<int> vec = {1, 2, 3};  // 순열을 구할 원소
+
+    do {
+        for (int i = 0; i < vec.size(); i++) {
+            cout << vec[i] << " ";
+        }
+        cout << endl;
+    } while (next_permutation(vec.begin(), vec.end()));  // next_permutation 사용
+
+    return 0;
+}
+```
+- 순열 : 순서를 따지고, 중복을 허용하지 않음
+- STL에서 제공하는 next_permutation 함수 사용 (오름차순 정렬 시 사용)
+- prev_permutation은 내림차순 정렬 시 사용
+
+### 2. 중복 순열
+```c++
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int main(void) {
+    vector<int> vec = {1, 1, 2};  // 중복 순열을 구할 원소들
+
+    sort(vec.begin(), vec.end());  // next_permutation은 원소들이 정렬된 상태에서 사용
+    do {
+        for (int i = 0; i < vec.size(); i++) {
+            cout << vec[i] << " ";
+        }
+        cout << endl;
+    } while (next_permutation(vec.begin(), vec.end()));
+
+    return 0;
+}
+```
+
+### 3. 조합
+```c++
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int main(void) {
+    vector<int> vec = {1, 2, 3};  // 조합을 구할 원소들
+    vector<int> comb(2);  // 조합으로 뽑을 원소의 개수
+
+    sort(vec.begin(), vec.end());
+    do {
+        for (int i = 0; i < 2; i++) {
+            comb[i] = vec[i];  // 조합 배열에 원소를 배치
+        }
+
+        for (int i = 0; i < comb.size(); i++) {
+            cout << comb[i] << " ";
+        }
+        cout << endl;
+
+    } while (next_permutation(vec.begin(), vec.end()));
+
+    return 0;
 }
 ```
 
